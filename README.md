@@ -67,7 +67,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AdPlayerLite.initialize(
-    storeUrl: 'https://apps.apple.com/us/app/your-app/id123456789',
+    iosStoreUrl: 'https://apps.apple.com/us/app/your-app/id123456789',
   );
 
   runApp(const MyApp());

@@ -25,7 +25,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
-  ad_player_lite: bc74c03a2dc4927441df4d8becd365a9e400bc66
+  ad_player_lite: 793340456dc78be30bcee0ea31c64149b8681137
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   GoogleAds-IMA-iOS-SDK: 1c696013d47bc3cafa48b7de9c8196941bd3105b
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
