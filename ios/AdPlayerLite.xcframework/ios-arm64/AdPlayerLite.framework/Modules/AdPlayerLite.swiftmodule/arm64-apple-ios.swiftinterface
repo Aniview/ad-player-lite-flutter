@@ -1,0 +1,267 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
+// swift-module-flags: -target arm64-apple-ios15.6 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AdPlayerLite
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+@_exported import AdPlayerLite
+import AdSupport
+import AppTrackingTransparency
+import CoreGraphics.CGGeometry
+import Combine
+import CoreGraphics
+import CoreLocation
+import CoreTelephony
+import DeveloperToolsSupport
+import Foundation
+import GoogleInteractiveMediaAds
+import Network
+import OSLog
+import Swift
+import SwiftUI
+import UIKit
+import UIKit/*.UIEdgeInsets*/
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct AdPlayerContent {
+  public let id: Swift.String
+  public let name: Swift.String
+  public let poster: Swift.String
+  public let thumbnail: Swift.String
+  public let description: Swift.String
+  public init(id: Swift.String, name: Swift.String, poster: Swift.String, thumbnail: Swift.String, description: Swift.String)
+}
+public enum AdPlayerEvent : Swift.Equatable {
+  case inventory
+  case adSourceLoaded
+  case adImpression
+  case adPlaying
+  case adPaused
+  case adVideoFirstQuartile
+  case adVideoMidpoint
+  case adVideoThirdQuartile
+  case adVideoCompleted(showCompanion: Swift.Bool)
+  case adSkipped(showCompanion: Swift.Bool)
+  case allAdsFinished
+  case adDurationChange(_: Foundation.TimeInterval)
+  case adVolumeChange(_: Swift.Float)
+  case onContentTimeChange(currentTime: Foundation.TimeInterval, duration: Foundation.TimeInterval)
+  case onContentError(_: Swift.String)
+  case contentVideoStart
+  case contentPlaying
+  case contentPaused
+  case contentClick
+  case contentVideoFirstQuartile
+  case contentVideoMidpoint
+  case contentVideoThirdQuartile
+  case contentVideoCompleted
+  case contentVolumeChange(_: Swift.Float)
+  case adError
+  case adClickThrough
+  case closed
+  public static func == (a: AdPlayerLite.AdPlayerEvent, b: AdPlayerLite.AdPlayerEvent) -> Swift.Bool
+}
+public enum AdPlayerState : Swift.Equatable {
+  case preparing
+  case ready
+  case playingAd
+  case playingContent
+  case notPlaying
+  case display
+  public static func == (a: AdPlayerLite.AdPlayerState, b: AdPlayerLite.AdPlayerState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct CloseButtonConfig {
+  public enum Position {
+    case defaultPosition
+    case topRight
+    case topLeft
+    public static func == (a: AdPlayerLite.CloseButtonConfig.Position, b: AdPlayerLite.CloseButtonConfig.Position) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public let left: CoreFoundation.CGFloat
+  public let right: CoreFoundation.CGFloat
+  public let outside: Swift.Bool
+  public let position: AdPlayerLite.CloseButtonConfig.Position
+  public let onlyForCompanion: Swift.Bool
+  public init(left: CoreFoundation.CGFloat = 0, right: CoreFoundation.CGFloat = 0, outside: Swift.Bool = false, position: AdPlayerLite.CloseButtonConfig.Position = .defaultPosition, onlyForCompanion: Swift.Bool = false)
+}
+public struct ContentProgressEvent {
+  public let currentTime: Foundation.TimeInterval
+  public let duration: Foundation.TimeInterval
+}
+@_hasMissingDesignatedInitializers final public class AdPlayer {
+  public static func initSDK(storeUrl: Foundation.URL)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public static func getTag(pubId: Swift.String, tagId: Swift.String, modifier: ((inout AdPlayerLite.SDKConfig) -> Swift.Void)? = nil) -> AdPlayerLite.AdPlayerTag
+  #endif
+  @objc deinit
+}
+extension AdPlayerLite.AdPlayer {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public static func showInterstitial(pubId: Swift.String, tagId: Swift.String, configuration: AdPlayerLite.AdPlayerInterstitialConfiguration? = nil, onDismiss: @escaping () -> Swift.Void = {}) -> any AdPlayerLite.AdPlayerInterstitialController
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func makeAdPlacement(pubId: Swift.String, tagId: Swift.String, config: AdPlayerLite.AdPlayerControllerConfiguration? = nil) -> AdPlayerLite.AdPlacementView
+  #endif
+}
+public protocol AdPlayerInReadController : AdPlayerLite.AdPlayerController {
+  func toggleFullscreen()
+}
+public protocol AdPlayerInterstitialController : AdPlayerLite.AdPlayerController {
+  func launchInterstitial()
+  func dismissInterstitial()
+}
+public protocol AdPlayerController : AnyObject {
+  var state: AdPlayerLite.AdPlayerState { get }
+  var statePublisher: Combine.AnyPublisher<AdPlayerLite.AdPlayerState, Swift.Never> { get }
+  var eventsPublisher: Combine.AnyPublisher<AdPlayerLite.AdPlayerEvent, Swift.Never> { get }
+  #if compiler(>=5.3) && $NonescapableTypes
+  var contentPublisher: Combine.AnyPublisher<AdPlayerLite.AdPlayerContent?, Swift.Never> { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var content: AdPlayerLite.AdPlayerContent? { get }
+  #endif
+  var playlistPublisher: Combine.AnyPublisher<[AdPlayerLite.AdPlayerContent], Swift.Never> { get }
+  var playlist: [AdPlayerLite.AdPlayerContent] { get }
+  #if compiler(>=5.3) && $NonescapableTypes
+  var showSkipButton: Swift.Bool? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var showSoundButton: Swift.Bool? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var showPlayButton: Swift.Bool? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var showFullscreenButton: Swift.Bool? { get set }
+  #endif
+  func pause()
+  func resume()
+  func skipAd()
+  func getReadyAdsCount() async -> Swift.Int
+  func getAdPosition() async -> Foundation.TimeInterval
+  func getAdDuration() async -> Foundation.TimeInterval
+  func getContentPosition() async -> Foundation.TimeInterval
+  func getContentDuration() async -> Foundation.TimeInterval
+  func toggleFullscreen()
+  func playNextContent()
+  func playPrevContent()
+  func playContentByIndex(_ index: Swift.Int)
+  func mute()
+  func unmute()
+  func mergeAdConfig(_ config: any Swift.Encodable)
+  func mergeContentConfig(_ config: any Swift.Encodable)
+  var contentProgressPublisher: Combine.AnyPublisher<AdPlayerLite.ContentProgressEvent, Swift.Never> { get }
+  func setContentCurrentTime(_ time: Foundation.TimeInterval)
+  func preload(_ size: CoreFoundation.CGSize)
+}
+public enum AdConfigError : Swift.Error {
+  case invalidJSON
+  public static func == (a: AdPlayerLite.AdConfigError, b: AdPlayerLite.AdConfigError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct AdPlayerControllerConfiguration {
+  public var contentOverride: AdPlayerLite.AdPlayerContentOverride?
+  public var disableVideoAds: Swift.Bool
+  public var disablePoster: Swift.Bool
+  public var fullScreenConfiguration: AdPlayerLite.FullscreenConfiguration
+  public var isContentTimeTrackingEnabled: Swift.Bool
+  public var isFloatingEnabled: Swift.Bool
+  public var initialAdConfig: (any Swift.Encodable)?
+  public var initialContentConfig: (any Swift.Encodable)?
+  public init()
+}
+public struct FullscreenConfiguration {
+  public var ignoreSafeArea: Swift.Bool
+  public var insets: UIKit.UIEdgeInsets
+  public var isCloseButtonEnabled: Swift.Bool
+}
+public enum AdPlayerContentOverride {
+  case cmsId(_: Swift.String, cmsType: Swift.String = "video")
+  case directUrls(_: [Swift.String])
+  case searchContent(_: AdPlayerLite.JSONObject)
+}
+@_hasMissingDesignatedInitializers final public class AdPlayerTag {
+  final public let pubId: Swift.String
+  final public let tagId: Swift.String
+  @objc deinit
+}
+extension AdPlayerLite.AdPlayerTag {
+  final public func newInReadController(configBuilder: (inout AdPlayerLite.AdPlayerControllerConfiguration) -> Swift.Void = { _  in }) -> any AdPlayerLite.AdPlayerInReadController
+  final public func newInterstitialController(configBuilder: (inout AdPlayerLite.AdPlayerControllerConfiguration) -> Swift.Void = { _  in }, interstitialConfigBuilder: (inout AdPlayerLite.AdPlayerInterstitialConfiguration) -> Swift.Void = { _  in }) -> any AdPlayerLite.AdPlayerInterstitialController
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func newInterstitialController(configuration: AdPlayerLite.AdPlayerInterstitialConfiguration? = nil, onDismiss: @escaping () -> Swift.Void = {}) -> any AdPlayerLite.AdPlayerInterstitialController
+  #endif
+}
+public let sdkVersionName: Swift.String
+public struct AdPlayerInterstitialConfiguration {
+  public var noAdTimeout: Foundation.TimeInterval
+  public var stalledVideoTimeout: Foundation.TimeInterval?
+  public var showCloseButtonAfterAdDuration: Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(noAdTimeout: Foundation.TimeInterval = 10, stalledVideoTimeout: Foundation.TimeInterval? = 10, showCloseButtonAfterAdDuration: Swift.Bool = false)
+  #endif
+  public static let defaultConfig: AdPlayerLite.AdPlayerInterstitialConfiguration
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency final public class AdPlacementView : UIKit.UIView {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency final public var controller: (any AdPlayerLite.AdPlayerController)? {
+    get
+  }
+  #endif
+  @_Concurrency.MainActor @preconcurrency weak final public var delegate: (any AdPlayerLite.AdPlacementViewLayoutDelegate)?
+  @_Concurrency.MainActor @preconcurrency final public func idealHeight(for width: CoreFoundation.CGFloat) -> CoreFoundation.CGFloat
+  @_Concurrency.MainActor @preconcurrency final public var isCollapsed: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override final public var intrinsicContentSize: CoreFoundation.CGSize {
+    @objc get
+  }
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency final public func attachController(_ controller: any AdPlayerLite.AdPlayerInReadController)
+  @_Concurrency.MainActor @preconcurrency @objc override final public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override final public func invalidateIntrinsicContentSize()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override final public func willMove(toWindow newWindow: UIKit.UIWindow?)
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc override final public func didMoveToWindow()
+  @objc deinit
+}
+public protocol AdPlacementViewLayoutDelegate : AnyObject {
+  func onResize(height: CoreFoundation.CGFloat)
+}
+public struct SDKConfig : Swift.Decodable {
+  public var interstitialNoAdTimeoutSec: Foundation.TimeInterval?
+  public var interstitialStalledVideoTimeout: Foundation.TimeInterval?
+  public var showCloseButtonAfterAdDuration: Swift.Bool?
+  public var contentTimeTracking: Swift.Bool?
+  public static let defaultConfig: AdPlayerLite.SDKConfig
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct JSONObject : Swift.Encodable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(_ dict: [Swift.String : Any])
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(_ data: Foundation.Data)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension AdPlayerLite.AdPlayerState : Swift.Hashable {}
+extension AdPlayerLite.CloseButtonConfig.Position : Swift.Equatable {}
+extension AdPlayerLite.CloseButtonConfig.Position : Swift.Hashable {}
+extension AdPlayerLite.AdConfigError : Swift.Equatable {}
+extension AdPlayerLite.AdConfigError : Swift.Hashable {}

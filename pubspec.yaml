@@ -1,0 +1,28 @@
+name: adplayerlite_flutter_plugin
+description: "Flutter plugin for the Aniview AdPlayer Lite SDK. Supports Android and iOS."
+version: 0.0.1
+homepage: https://github.com/aniview/ad-player-lite-flutter
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.adservrs.adplayer.lite.flutter
+        pluginClass: AdPlayerLiteFlutterPlugin
+      ios:
+        pluginClass: AdplayerliteFlutterPlugin
