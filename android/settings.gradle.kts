@@ -1,4 +1,4 @@
-rootProject.name = "adplayerlite_flutter_plugin"
+rootProject.name = "ad_player_lite_flutter"
 
 dependencyResolutionManagement {
     repositories {

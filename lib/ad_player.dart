@@ -1,4 +1,4 @@
-import 'package:adplayerlite_flutter_plugin/ad_player_tag.dart';
+import 'package:ad_player_lite/ad_player_tag.dart';
 import 'package:flutter/services.dart';
 
 ///

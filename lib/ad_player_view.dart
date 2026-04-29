@@ -1,4 +1,4 @@
-import 'package:adplayerlite_flutter_plugin/ad_player_controller.dart';
+import 'package:ad_player_lite/ad_player_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

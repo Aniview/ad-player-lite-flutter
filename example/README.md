@@ -1,6 +1,6 @@
-# adplayerlite_flutter_plugin_example
+# ad_player_lite_example
 
-Demonstrates how to use the adplayerlite_flutter_plugin plugin.
+Demonstrates how to use the ad_player_lite plugin.
 
 ## Getting Started
 

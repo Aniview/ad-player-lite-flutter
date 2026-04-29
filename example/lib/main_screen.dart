@@ -1,7 +1,7 @@
-import 'package:adplayerlite_flutter_plugin/ad_player_controller.dart';
-import 'package:adplayerlite_flutter_plugin/ad_player_event.dart';
-import 'package:adplayerlite_flutter_plugin/ad_player_view.dart';
-import 'package:adplayerlite_flutter_plugin_example/main.dart';
+import 'package:ad_player_lite/ad_player_controller.dart';
+import 'package:ad_player_lite/ad_player_event.dart';
+import 'package:ad_player_lite/ad_player_view.dart';
+import 'package:ad_player_lite_example/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

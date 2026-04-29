@@ -1,5 +1,5 @@
-import 'package:adplayerlite_flutter_plugin/ad_player_event.dart';
-import 'package:adplayerlite_flutter_plugin/ad_player_state.dart';
+import 'package:ad_player_lite/ad_player_event.dart';
+import 'package:ad_player_lite/ad_player_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 

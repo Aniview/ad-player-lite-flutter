@@ -1,6 +1,6 @@
 //
 //  AdPlayerLiteStateHandler.swift
-//  adplayerlite_flutter_plugin
+//  ad_player_lite
 //
 //  Created by Zhanna Moskaliuk on 23.04.2026.
 //

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.adservrs.adplayerlite.flutter"
+    namespace = "com.adservrs.adplayer.lite.flutter"
 
     compileSdk = 36
 

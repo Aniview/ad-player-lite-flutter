@@ -21,7 +21,7 @@ Add the plugin to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  adplayerlite_flutter_plugin:
+  ad_player_lite:
     git:
       url: https://github.com/aniview/ad-player-lite-flutter.git
 ```
@@ -79,7 +79,7 @@ void main() async {
 Place `AdPlayerLitePlacementWidget` anywhere in your widget tree. **You control the size** — wrap it in a `SizedBox`, `AspectRatio`, or any other sizing widget.
 
 ```dart
-import 'package:adplayerlite_flutter_plugin/adplayerlite_placement_widget.dart';
+import 'package:ad_player_lite/adplayerlite_placement_widget.dart';
 
 // 16:9 aspect ratio (recommended for video ads)
 AspectRatio(

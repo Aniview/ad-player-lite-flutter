@@ -1,6 +1,6 @@
 //
 //  StatePublisherHelpers.swift
-//  adplayerlite_flutter_plugin
+//  ad_player_lite
 //
 //  Created by Zhanna Moskaliuk on 24.04.2026.
 //

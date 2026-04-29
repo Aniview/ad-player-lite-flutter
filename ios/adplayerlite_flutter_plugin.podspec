@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-  s.name             = 'adplayerlite_flutter_plugin'
-  s.version          = '0.0.1'
+  s.name             = 'ad_player_lite'
+  s.version          = '0.1.0'
   s.summary          = 'Flutter wrapper for AdPlayerLite'
   s.description      = 'Flutter plugin bridging AdPlayerLite XCFramework'
   s.homepage         = 'https://example.com'

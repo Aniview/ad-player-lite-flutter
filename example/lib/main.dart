@@ -1,5 +1,5 @@
-import 'package:adplayerlite_flutter_plugin/ad_player.dart';
-import 'package:adplayerlite_flutter_plugin_example/main_screen.dart';
+import 'package:ad_player_lite/ad_player.dart';
+import 'package:ad_player_lite_example/main_screen.dart';
 import 'package:flutter/material.dart';
 
 final pubId = "655b78633181f4603178b4568";
