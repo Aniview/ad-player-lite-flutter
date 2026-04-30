@@ -24,8 +24,7 @@ class AdPlayer {
   }
 
   ///
-  /// Returns tag for specific configuration.
-  /// Tags are cached and calling with method with the same arguments will always return the same object.
+  /// Returns current version of plagin
   ///
   static Future<String> getVersion() async {
     return await _channel.invokeMethod<String>("getVersion") ?? "unknown";

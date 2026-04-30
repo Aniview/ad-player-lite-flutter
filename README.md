@@ -60,43 +60,24 @@ The plugin bundles the `AdPlayerLite.xcframework` and pulls in `GoogleAds-IMA-iO
 
 ### 1. Initialize the SDK
 
-Call `AdPlayerLite.initialize` once at app startup, before `runApp`. On iOS, pass your App Store URL — it is used by the SDK for attribution. On Android the call is a no-op and the parameter is ignored.
-
+Initialize SDK by calling 
 ```dart
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+final adPlayer = AdPlayer.initialize(iosStoreUrl: "https://apps.apple.com/us/app/demo-app/id1234567");
 
-  await AdPlayerLite.initialize(
-    iosStoreUrl: 'https://apps.apple.com/us/app/your-app/id123456789',
-  );
-
-  runApp(const MyApp());
-}
 ```
+On iOS, pass your App Store URL — it is used by the SDK for attribution. On Android the call is a no-op and the parameter is ignored.
 
-### 2. Display the player
 
-Place `AdPlayerLitePlacementWidget` anywhere in your widget tree. **You control the size** — wrap it in a `SizedBox`, `AspectRatio`, or any other sizing widget.
+### 2. Initialize AdPlayer 
 
 ```dart
-import 'package:ad_player_lite/adplayerlite_placement_widget.dart';
 
-// 16:9 aspect ratio (recommended for video ads)
-AspectRatio(
-  aspectRatio: 16 / 9,
-  child: AdPlayerLitePlacementWidget(
-    pubId: 'your_publisher_id',
-    tagId: 'your_tag_id',
-  ),
-)
-
-// Fixed size
-SizedBox(
-  height: 200,
-  child: AdPlayerLitePlacementWidget(
-    pubId: 'your_publisher_id',
-    tagId: 'your_tag_id',
-  ),
+Widget buildContent(BuildContext context) {
+    final snapshot = useFuture(
+      useMemoized(() {
+        return adPlayer.getTag(pubId: pubId, tagId: tagId).then((e) => e.newInReadController());
+      }),
+    );
 )
 ```
 
@@ -106,25 +87,169 @@ SizedBox(
 
 ## API Reference
 
-### `AdPlayerLite`
+## AdPlayer
+
+### Initializes instance of the AdPlayer.
 
 ```dart
-// Initialize the SDK — call once before runApp
-static Future<void> initialize({String? storeUrl})
 
-// Get the plugin version string
-static Future<String> getVersion()
+  static AdPlayer initialize({String? iosStoreUrl}) {
+    if (!initialized) {
+      _channel.invokeMethod("initialize", {
+        "iosStoreUrl": iosStoreUrl,
+      });
+      initialized = true;
+    }
+    return const AdPlayer._();
+  }
+
 ```
 
-### `AdPlayerLitePlacementWidget`
+### Returns tag for specific configuration.
 
 ```dart
-AdPlayerLitePlacementWidget({
-  required String pubId,           // Publisher ID 
-  required String tagId,           // Tag ID
-  PlatformViewHitTestBehavior hitTestBehavior,  // default: opaque
-})
+
+Future<AdPlayerTag> getTag({
+    required String pubId,
+    required String tagId,
+  }) async {
+    final id = await _channel.invokeMethod("getTag", {
+      "pubId": pubId,
+      "tagId": tagId,
+    });
+    return AdPlayerTag(id as String);
+  }
+
 ```
+
+## AdPlayerView
+
+'AdPlayerView' - player container view should be initialized with 'controller' parameter:
+
+```dart
+
+Widget buildContent(BuildContext context) {
+    final snapshot = useFuture(
+      useMemoized(() {
+        return adPlayer.getTag(pubId: pubId, tagId: tagId).then((e) => e.newInReadController());
+      }),
+    );
+
+    final controller = snapshot.data;
+```
+
+```dart
+
+    return Column(
+      children: [
+        Expanded(child: AdPlayerView(controller: controller)),
+        buildControls(context, controller),
+        Expanded(child: buildPanel(context, controller)),
+      ],
+    );
+
+```
+
+## Returns current version of plagin.
+
+```dart
+
+static Future<String> getVersion() async {
+    return await _channel.invokeMethod<String>("getVersion") ?? "unknown";
+  }
+
+```
+## AdPlayerTag
+
+### Returns new controller for in-read ads.
+
+```dart
+
+Future<AdPlayerInReadController> newInReadController() async {
+    final controllerId = await _channel.invokeMethod("newInReadController", {"id": id});
+    return AdPlayerInReadController(controllerId as String);
+  }
+```
+
+## AdPlayerController
+
+### State changes stream
+
+```dart
+
+late final state = _stateChannel.receiveBroadcastStream({'id': id}).map(AdPlayerState.fromNative);
+
+```
+
+### Events stream
+
+```dart
+
+late final state = _stateChannel.receiveBroadcastStream({'id': id}).map(AdPlayerState.fromNative);
+
+```
+
+## Release all resources used by this controller.
+
+```dart
+
+void dispose() {
+    _methodChannel.invokeMethod("dispose", {"id": id});
+  }
+
+```
+## Current player state.
+
+```dart
+
+Future<AdPlayerState> getCurrentState() async {
+    final result = await _methodChannel.invokeMethod("getCurrentState", {"id": id});
+    return AdPlayerState.fromNative(result);
+  }
+
+```
+
+## Pauses the player if it's playing.
+
+```dart
+
+void pause() {
+    _methodChannel.invokeMethod("pause", {"id": id});
+  }
+
+```
+
+## Resumes the player if it's paused.
+
+```dart
+
+void resume() {
+    _methodChannel.invokeMethod("resume", {"id": id});
+  }
+
+```
+
+## Skips the currently playing ad if there is one.
+
+```dart
+
+void skipAd() {
+    _methodChannel.invokeMethod("skipAd", {"id": id});
+  }
+
+```
+
+##  Moves the player to or from the fullscreen display mode.
+
+```dart
+
+void toggleFullscreen() {
+    _methodChannel.invokeMethod("toggleFullscreen", {"id": id});
+  }
+
+```
+
+
 
 The widget renders the native SDK view and fills 100% of the space provided by its parent. It does not impose any size of its own.
 
