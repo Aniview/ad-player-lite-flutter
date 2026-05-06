@@ -1,5 +1,6 @@
 import 'package:ad_player_lite/ad_player_tag.dart';
 import 'package:flutter/services.dart';
+import 'package:ad_player_lite/adplayerinterstitial_controller_config.dart';
 
 ///
 /// Global object responsible for creating tags.
@@ -45,3 +46,31 @@ class AdPlayer {
     return AdPlayerTag(id as String);
   }
 }
+
+extension AdPlayerInterstitial on AdPlayer {
+  Future<void> showInterstitial({
+    required String pubId,
+    required String tagId,
+    InterstitialConfig? config,
+  }) async {
+    final tag = await getTag(pubId: pubId, tagId: tagId);
+
+    final controller = await tag.newInterstitialController(config: config);
+
+    controller.launchInterstitial();
+  }
+}
+
+// extension AdPlayerInterstitial on AdPlayer {
+//   Future<void> showInterstitial({
+//     required String pubId,
+//     required String tagId,
+//     required InterstitialConfig config,
+//   }) async {
+//     final tag = await getTag(pubId: pubId, tagId: tagId);
+//     final interstitialController = await tag.newInterstitialController();
+
+//     // Pass config where needed (example)
+//     interstitialController.launchInterstitial(config.toMap());
+//   }
+// }

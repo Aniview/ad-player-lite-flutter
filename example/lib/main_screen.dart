@@ -4,6 +4,8 @@ import 'package:ad_player_lite/ad_player_view.dart';
 import 'package:ad_player_lite_example/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:ad_player_lite/ad_player.dart';
+import 'package:ad_player_lite/adplayerinterstitial_controller_config.dart';
 
 class MainScreen extends HookWidget {
   const MainScreen({super.key});
@@ -30,11 +32,35 @@ class MainScreen extends HookWidget {
     return Column(
       children: [
         Expanded(child: AdPlayerView(controller: controller)),
-        buildControls(context, controller),
-        Expanded(child: buildPanel(context, controller)),
-      ],
-    );
-  }
+    
+          buildControls(context, controller),
+
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(12),
+            child: ElevatedButton(
+            onPressed: () async {
+            final config = InterstitialConfig(
+            noAdTimeout: 5.0,
+            stalledVideoTimeout: 10.0,
+            showCloseButtonAfterAdDuration: true,
+          );
+
+          // Interstitial controller with config
+          adPlayer.showInterstitial(
+            pubId: pubId,
+            tagId: tagId,
+            config: config,
+          );
+        },
+        child: const Text("Show Ad"),
+      ),
+    ),
+
+      Expanded(child: buildPanel(context, controller)),
+        ],
+      );
+    }
 
   Widget buildControls(BuildContext context, AdPlayerInReadController controller) {
     final state = useStream(controller.state);

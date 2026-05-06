@@ -2,6 +2,7 @@ import 'package:ad_player_lite/ad_player_event.dart';
 import 'package:ad_player_lite/ad_player_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:ad_player_lite/ad_player.dart';
 
 const _methodChannel = MethodChannel("com.adservrs.adplayer.lite/AdPlayerController");
 const _stateChannel = EventChannel("com.adservrs.adplayer.lite/AdPlayerController/State");
@@ -60,7 +61,7 @@ sealed class AdPlayerController {
   ///
   void skipAd() {
     _methodChannel.invokeMethod("skipAd", {"id": id});
-  }
+  } 
 }
 
 class AdPlayerInReadController extends AdPlayerController {
@@ -72,5 +73,25 @@ class AdPlayerInReadController extends AdPlayerController {
   ///
   void toggleFullscreen() {
     _methodChannel.invokeMethod("toggleFullscreen", {"id": id});
+  }
+}
+
+class AdPlayerInterstitialController extends AdPlayerController {
+  @internal
+  AdPlayerInterstitialController(super.id);
+
+  ///
+  /// Launches 'interstitial' controller.
+  /// 'Interstitial' controller is presented modally on iOS.
+  /// 
+  void launchInterstitial() {
+    _methodChannel.invokeMethod("launchInterstitial", {"id": id});
+  }
+
+  ///
+  /// Dismisses 'interstitial' controller.
+  ///
+  void dismissInterstitial() {
+    _methodChannel.invokeMethod("dismissInterstitial", {"id": id});
   }
 }
