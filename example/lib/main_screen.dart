@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:ad_player_lite/ad_player.dart';
 import 'package:ad_player_lite/adplayerinterstitial_controller_config.dart';
+import 'package:ad_player_lite/ad_player_profiles_data.dart';
 
 class MainScreen extends HookWidget {
   const MainScreen({super.key});
@@ -18,7 +19,7 @@ class MainScreen extends HookWidget {
   Widget buildContent(BuildContext context) {
     final snapshot = useFuture(
       useMemoized(() {
-        return adPlayer.getTag(pubId: pubId, tagId: tagId).then((e) => e.newInReadController());
+        return adPlayer.getTag(pubId: ProfilesData.dailyHunt.pubId, tagId: ProfilesData.dailyHunt.tagId).then((e) => e.newInReadController());
       }),
     );
 
@@ -48,8 +49,8 @@ class MainScreen extends HookWidget {
 
           // Interstitial controller with config
           adPlayer.showInterstitial(
-            pubId: pubId,
-            tagId: tagId,
+            pubId: ProfilesData.ford.pubId,
+            tagId: ProfilesData.ford.tagId,
             config: config,
           );
         },

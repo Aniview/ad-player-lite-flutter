@@ -2,8 +2,6 @@ import 'package:ad_player_lite/ad_player.dart';
 import 'package:ad_player_lite_example/main_screen.dart';
 import 'package:flutter/material.dart';
 
-final pubId = "655b78633181f4603178b4568";
-final tagId = "69a85c4cf0207bb55009bba7";
 final adPlayer = AdPlayer.initialize(iosStoreUrl: "https://apps.apple.com/us/app/demo-app/id1234567");
 
 void main() async {
