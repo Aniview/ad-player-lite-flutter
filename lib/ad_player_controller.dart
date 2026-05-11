@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:ad_player_lite/ad_player_event.dart';
 import 'package:ad_player_lite/ad_player_state.dart';
+import 'package:ad_player_lite/ad_player_tag.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +11,8 @@ const _stateChannel = EventChannel("com.adservrs.adplayer.lite/AdPlayerControlle
 const _eventsChannel = EventChannel("com.adservrs.adplayer.lite/AdPlayerController/Events");
 
 sealed class AdPlayerController {
+  static final _methodHandlers = <String, void Function(MethodCall)?>{};
+
   ///
   /// Unique id of this controller
   ///
@@ -24,12 +29,19 @@ sealed class AdPlayerController {
   late final events = _eventsChannel.receiveBroadcastStream({'id': id}).map(AdPlayerEvent.fromNative);
 
   @internal
-  AdPlayerController(this.id);
+  AdPlayerController(this.id) {
+    _methodChannel.setMethodCallHandler((e) async {
+      final handler = _methodHandlers[e.arguments["id"]];
+      return handler?.call(e);
+    });
+    _methodHandlers[id] = _handleMethodCall;
+  }
 
   ///
   /// Release all resources used by this controller.
   ///
   void dispose() {
+    _methodHandlers[id] = null;
     _methodChannel.invokeMethod("dispose", {"id": id});
   }
 
@@ -61,6 +73,9 @@ sealed class AdPlayerController {
   void skipAd() {
     _methodChannel.invokeMethod("skipAd", {"id": id});
   }
+
+  void _handleMethodCall(MethodCall call) {
+  }
 }
 
 class AdPlayerInReadController extends AdPlayerController {
@@ -72,5 +87,38 @@ class AdPlayerInReadController extends AdPlayerController {
   ///
   void toggleFullscreen() {
     _methodChannel.invokeMethod("toggleFullscreen", {"id": id});
+  }
+}
+
+class AdPlayerInterstitialController extends AdPlayerController {
+  final AdPlayerInterstitialConfig _config;
+
+  @internal
+  AdPlayerInterstitialController(super.id, this._config);
+
+  ///
+  /// Launches 'interstitial' controller.
+  /// 'Interstitial' controller is presented modally on iOS.
+  ///
+  void launchInterstitial() {
+    _methodChannel.invokeMethod("launchInterstitial", {"id": id});
+  }
+
+  ///
+  /// Dismisses 'interstitial' controller.
+  ///
+  void dismissInterstitial() {
+    _methodChannel.invokeMethod("dismissInterstitial", {"id": id});
+  }
+
+  @override
+  void _handleMethodCall(MethodCall call) {
+    switch (call.method) {
+      case "onInterstitialDismissed":
+        _config.onDismissListener?.call(this);
+        break;
+      default:
+        return super._handleMethodCall(call);
+    }
   }
 }

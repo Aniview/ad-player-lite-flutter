@@ -32,6 +32,10 @@ final class AdPlayerControllerMethodHandler {
             handleToggleFullscreen(arguments: call.arguments, result: result)
         case "skipAd":
             handleSkipAd(arguments: call.arguments, result: result)
+        case "launchInterstitial":
+            handleLaunchInterstitial(arguments: call.arguments, result: result)
+        case "dismissInterstitial":
+            handleDismissInterstitial(arguments: call.arguments, result: result)
         default:
             result(FlutterError.notImplemented(name: call.method))
         }
@@ -45,7 +49,7 @@ final class AdPlayerControllerMethodHandler {
             result(FlutterError.missingArguments())
             return
         }
-        guard let controller = registry.getController(controllerId) else {
+        guard let controller = registry.getController(controllerId)?.inRead else {
             result(FlutterError.controllerIsMissing())
             return
         }
@@ -61,7 +65,7 @@ final class AdPlayerControllerMethodHandler {
             result(FlutterError.missingArguments())
             return
         }
-        guard let controller = registry.getController(controllerId) else {
+        guard let controller = registry.getController(controllerId)?.inRead else {
             result(FlutterError.controllerIsMissing())
             return
         }
@@ -77,7 +81,7 @@ final class AdPlayerControllerMethodHandler {
             result(FlutterError.missingArguments())
             return
         }
-        guard let controller = registry.getController(controllerId) else {
+        guard let controller = registry.getController(controllerId)?.inRead else {
             result(FlutterError.controllerIsMissing())
             return
         }
@@ -93,7 +97,7 @@ final class AdPlayerControllerMethodHandler {
             result(FlutterError.missingArguments())
             return
         }
-        guard let controller = registry.getController(controllerId) else {
+        guard let controller = registry.getController(controllerId)?.inRead else {
             result(FlutterError.controllerIsMissing())
             return
         }
@@ -109,11 +113,45 @@ final class AdPlayerControllerMethodHandler {
             result(FlutterError.missingArguments())
             return
         }
-        guard let controller = registry.getController(controllerId) else {
+        guard let controller = registry.getController(controllerId)?.inRead else {
             result(FlutterError.controllerIsMissing())
             return
         }
         controller.skipAd()
+        result(nil)
+    }
+    
+    // MARK: - Launch interstitial controller
+    private func handleLaunchInterstitial(arguments: Any?, result: @escaping FlutterResult) {
+        guard let params = arguments as? [String: String],
+              let controllerId = params["id"],
+              let registry = registry
+        else {
+            result(FlutterError.missingArguments())
+            return
+        }
+        guard let controller = registry.getController(controllerId)?.interstitial else {
+            result(FlutterError.controllerIsMissing())
+            return
+        }
+        controller.launchInterstitial()
+        result(nil)
+    }
+    
+    // MARK: - Dismiss interstitial controller
+    private func handleDismissInterstitial(arguments: Any?, result: @escaping FlutterResult) {
+        guard let params = arguments as? [String: String],
+              let controllerId = params["id"],
+              let registry = registry
+        else {
+            result(FlutterError.missingArguments())
+            return
+        }
+        guard let controller = registry.getController(controllerId)?.interstitial else {
+            result(FlutterError.controllerIsMissing())
+            return
+        }
+        controller.dismissInterstitial()
         result(nil)
     }
 }

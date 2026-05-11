@@ -17,10 +17,7 @@ internal class AdPlayerControllerStateChannel(
 ) : EventChannel.StreamHandler {
     private val coroutineScope = MainScope()
     private val currentJob = AtomicReference<Job?>(null)
-    private val channel = EventChannel(
-        binding.binaryMessenger,
-        "com.adservrs.adplayer.lite/AdPlayerController/State",
-    )
+    private val channel = EventChannel(binding.binaryMessenger, "com.adservrs.adplayer.lite/AdPlayerController/State")
 
     init {
         channel.setStreamHandler(this)

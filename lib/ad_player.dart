@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 ///
 class AdPlayer {
   static const _channel = MethodChannel("com.adservrs.adplayer.lite/AdPlayer");
-  static var initialized = false;
+  static var _initialized = false;
 
   const AdPlayer._();
 
@@ -14,11 +14,9 @@ class AdPlayer {
   /// Initialize instance of the AdPlayer.
   ///
   static AdPlayer initialize({String? iosStoreUrl}) {
-    if (!initialized) {
-      _channel.invokeMethod("initialize", {
-        "iosStoreUrl": iosStoreUrl,
-      });
-      initialized = true;
+    if (!_initialized) {
+      _channel.invokeMethod("initialize", {"iosStoreUrl": iosStoreUrl});
+      _initialized = true;
     }
     return const AdPlayer._();
   }
@@ -34,14 +32,8 @@ class AdPlayer {
   /// Returns tag for specific configuration.
   /// Tags are cached and calling with method with the same arguments will always return the same object.
   ///
-  Future<AdPlayerTag> getTag({
-    required String pubId,
-    required String tagId,
-  }) async {
-    final id = await _channel.invokeMethod("getTag", {
-      "pubId": pubId,
-      "tagId": tagId,
-    });
+  Future<AdPlayerTag> getTag({required String pubId, required String tagId}) async {
+    final id = await _channel.invokeMethod("getTag", {"pubId": pubId, "tagId": tagId});
     return AdPlayerTag(id as String);
   }
 }
