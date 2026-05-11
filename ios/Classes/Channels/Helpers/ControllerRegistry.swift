@@ -3,14 +3,14 @@ import AdPlayerLite
 
 final class ControllerRegistry {
 
-    // MARK: - TAGS
+    // MARK: - Tags store
     private var tags: [String: AdPlayerTag] = [:]
 
-    // MARK: - CONTROLLERS
-    private var controllers: [String: AdPlayerInReadController] = [:]
+    // MARK: - Controllers store
+    private var controllers: [String: AdPlayerControllerType] = [:]
 
-    // MARK: - TAGS
-
+    // MARK: - Tags
+    
     func addTag(_ tag: AdPlayerTag) -> String {
         let id = UUID().uuidString
         tags[id] = tag
@@ -25,15 +25,15 @@ final class ControllerRegistry {
         tags.removeValue(forKey: id)
     }
 
-    // MARK: - CONTROLLERS
+    // MARK: - Controllers
 
-    func addController(_ controller: AdPlayerInReadController) -> String {
+    func addController(_ controller: AdPlayerControllerType) -> String {
         let id = UUID().uuidString
         controllers[id] = controller
         return id
     }
 
-    func getController(_ id: String) -> AdPlayerInReadController? {
+    func getController(_ id: String) -> AdPlayerControllerType? {
         controllers[id]
     }
 

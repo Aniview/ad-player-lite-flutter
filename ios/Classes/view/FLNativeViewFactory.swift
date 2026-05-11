@@ -23,7 +23,7 @@ final class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     ) -> FlutterPlatformView {
         guard let dict = args as? [String: Any],
               let controllerId = dict["controllerId"] as? String,
-              let controller = registry.getController(controllerId)
+              let controller = registry.getController(controllerId)?.inRead
         else {
             fatalError("AdPlacementView requires a registered controllerId")
         }

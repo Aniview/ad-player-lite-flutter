@@ -45,7 +45,7 @@ final class AdPlayerLiteEventsHandler: NSObject, FlutterStreamHandler {
         }
         stopPublisher() // prevent duplicates
         // get controller by 'id' from 'registry'
-        guard let controller = registry?.getController(withId) else {
+        guard let controller = registry?.getController(withId)?.inRead else {
             eventsSink?(FlutterError.missingArguments())
             return
         }

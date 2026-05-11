@@ -17,10 +17,7 @@ internal class AdPlayerControllerEventsChannel(
 ) : EventChannel.StreamHandler {
     private val coroutineScope = MainScope()
     private val currentJob = AtomicReference<Job?>(null)
-    private val channel = EventChannel(
-        binding.binaryMessenger,
-        "com.adservrs.adplayer.lite/AdPlayerController/Events",
-    )
+    private val channel = EventChannel(binding.binaryMessenger, "com.adservrs.adplayer.lite/AdPlayerController/Events")
 
     init {
         channel.setStreamHandler(this)

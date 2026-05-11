@@ -51,7 +51,5 @@ android {
 }
 
 dependencies {
-    implementation("com.adservrs:ad-player-lite:3.7.12")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.mockito:mockito-core:5.0.0")
+    implementation("com.adservrs:ad-player-lite:3.7.13")
 }

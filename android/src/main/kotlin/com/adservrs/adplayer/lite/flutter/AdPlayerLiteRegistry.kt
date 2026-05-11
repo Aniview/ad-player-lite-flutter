@@ -29,9 +29,9 @@ internal class AdPlayerLiteRegistry {
         }
     }
 
-    fun addController(controller: AdPlayerController): String {
+    fun addController(block: (String) -> AdPlayerController): String {
         val id = controllerIdCounter.incrementAndGet().toString()
-        controllers[id] = controller
+        controllers[id] = block(id)
         return id
     }
 

@@ -2,6 +2,7 @@ package com.adservrs.adplayer.lite.flutter.channels
 
 import com.adservrs.adplayer.lite.AdPlayerController
 import com.adservrs.adplayer.lite.AdPlayerInReadController
+import com.adservrs.adplayer.lite.AdPlayerInterstitialController
 import com.adservrs.adplayer.lite.flutter.AdPlayerLiteRegistry
 import com.adservrs.adplayer.lite.flutter.mappers.toFlutterValue
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -12,10 +13,7 @@ internal class AdPlayerControllerChannel(
     binding: FlutterPlugin.FlutterPluginBinding,
     private val registry: AdPlayerLiteRegistry,
 ) : MethodChannel.MethodCallHandler {
-    private val channel = MethodChannel(
-        binding.binaryMessenger,
-        "com.adservrs.adplayer.lite/AdPlayerController",
-    )
+    private val channel = MethodChannel(binding.binaryMessenger, "com.adservrs.adplayer.lite/AdPlayerController")
 
     init {
         channel.setMethodCallHandler(this)
@@ -43,6 +41,9 @@ internal class AdPlayerControllerChannel(
             "skipAd" -> skipAd(controller, result)
             // AdPlayerInReadController
             "toggleFullscreen" -> toggleFullscreen(controller, result)
+            // AdPlayerInterstitialController
+            "launchInterstitial" -> launchInterstitial(controller, result)
+            "dismissInterstitial" -> dismissInterstitial(controller, result)
             else -> result.notImplemented()
         }
     }
@@ -75,6 +76,20 @@ internal class AdPlayerControllerChannel(
     private fun toggleFullscreen(controller: AdPlayerController, result: MethodChannel.Result) {
         if (controller is AdPlayerInReadController) {
             controller.toggleFullscreen()
+        }
+        result.success(null)
+    }
+
+    private fun launchInterstitial(controller: AdPlayerController, result: MethodChannel.Result) {
+        if (controller is AdPlayerInterstitialController) {
+            controller.launchInterstitial()
+        }
+        result.success(null)
+    }
+
+    private fun dismissInterstitial(controller: AdPlayerController, result: MethodChannel.Result) {
+        if (controller is AdPlayerInterstitialController) {
+            controller.dismissInterstitial()
         }
         result.success(null)
     }
