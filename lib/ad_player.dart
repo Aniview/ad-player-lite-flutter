@@ -13,7 +13,7 @@ class AdPlayer {
   ///
   /// Initialize instance of the AdPlayer.
   ///
-  static AdPlayer initialize({String? iosStoreUrl}) {
+  static AdPlayer initialize({String? iosStoreUrl})  {
     if (!_initialized) {
       _channel.invokeMethod("initialize", {"iosStoreUrl": iosStoreUrl});
       _initialized = true;

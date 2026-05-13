@@ -9,7 +9,7 @@ Flutter plugin for the [Aniview AdPlayer Lite](https://github.com/aniview) SDK. 
 | Platform | Minimum version |
 |----------|----------------|
 | Android  | API 24 (Android 7.0) |
-| iOS      | 13.0 |
+| iOS      | 15.0 |
 | Flutter  | 3.3.0 |
 | Dart     | 3.3.0 |
 
@@ -17,7 +17,7 @@ Flutter plugin for the [Aniview AdPlayer Lite](https://github.com/aniview) SDK. 
 
 ## Installation
 
-Add the plugin to your `pubspec.yaml`:
+Add 'AdPlayerLite' to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -26,231 +26,97 @@ dependencies:
       url: https://github.com/aniview/ad-player-lite-flutter.git
 ```
 
-### Android — add the Aniview Maven repository
-
-In your app's `android/settings.gradle` (or `settings.gradle.kts`), add the Aniview Maven repository to **both** `pluginManagement` and `dependencyResolutionManagement`:
-
-```kotlin
-pluginManagement {
-    repositories {
-        // ... existing entries
-        maven("https://us-central1-maven.pkg.dev/mobile-sdk-fd2e4/adservr-maven")
-    }
-}
-
-dependencyResolutionManagement {
-    repositories {
-        // ... existing entries
-        maven("https://us-central1-maven.pkg.dev/mobile-sdk-fd2e4/adservr-maven")
-    }
-}
-```
-
-### iOS — install pods
-
-```bash
-cd ios && pod install
-```
-
-The plugin bundles the `AdPlayerLite.xcframework` and pulls in `GoogleAds-IMA-iOS-SDK` via CocoaPods automatically.
-
----
-
 ## Usage
 
-### 1. Initialize the SDK
+### 1. Initialize `AdPlayerLite` SDK:
 
-Initialize SDK by calling 
 ```dart
-final adPlayer = AdPlayer.initialize(iosStoreUrl: "https://apps.apple.com/us/app/demo-app/id1234567");
+
+final adPlayer = AdPlayer.initialize(iosStoreUrl: "STORE_URL_TO_YOUR_APP");
 
 ```
-On iOS, pass your App Store URL — it is used by the SDK for attribution. On Android the call is a no-op and the parameter is ignored.
+* on iOS, pass your App Store URL — it is used by the SDK for attribution.
 
+--- 
 
-### 2. Initialize AdPlayer 
+### 2. Create tag:
 
 ```dart
 
-Widget buildContent(BuildContext context) {
-    final snapshot = useFuture(
-      useMemoized(() {
-        return adPlayer.getTag(pubId: pubId, tagId: tagId).then((e) => e.newInReadController());
-      }),
-    );
-)
+final tag = await adPlayer.getTag(pubId: pubId, tagId: tagId);
+     
 ```
 
 `pubId` and `tagId` are obtained from the contact person.
 
+--- 
+
+### 3. To use `InRead ads` features create `InRead` controller from tag: 
+
+
+```dart
+
+final controller = await tag.newInReadController();
+     
+```
 ---
 
-## API Reference
-
-## AdPlayer
-
-### Initializes instance of the AdPlayer.
+### 4. To add AdPlayer view to the widget:
 
 ```dart
 
-  static AdPlayer initialize({String? iosStoreUrl}) {
-    if (!initialized) {
-      _channel.invokeMethod("initialize", {
-        "iosStoreUrl": iosStoreUrl,
-      });
-      initialized = true;
-    }
-    return const AdPlayer._();
-  }
+return Column(
+  children: [
+    AdPlayerView(controller: controller),
+  ],
+);
 
-```
-
-### Returns tag for specific configuration.
-
-```dart
-
-Future<AdPlayerTag> getTag({
-    required String pubId,
-    required String tagId,
-  }) async {
-    final id = await _channel.invokeMethod("getTag", {
-      "pubId": pubId,
-      "tagId": tagId,
-    });
-    return AdPlayerTag(id as String);
-  }
-
-```
-
-## AdPlayerView
-
-'AdPlayerView' - player container view should be initialized with 'controller' parameter:
-
-```dart
-
-Widget buildContent(BuildContext context) {
-    final snapshot = useFuture(
-      useMemoized(() {
-        return adPlayer.getTag(pubId: pubId, tagId: tagId).then((e) => e.newInReadController());
-      }),
-    );
-
-    final controller = snapshot.data;
 ```
 
 ```dart
 
-    return Column(
-      children: [
-        Expanded(child: AdPlayerView(controller: controller)),
-        buildControls(context, controller),
-        Expanded(child: buildPanel(context, controller)),
-      ],
-    );
+return AdPlayerView(controller: controller);
 
 ```
+---
 
-## Returns current version of plagin.
+### 5. To subscribe to events stream: 
 
 ```dart
 
-static Future<String> getVersion() async {
-    return await _channel.invokeMethod<String>("getVersion") ?? "unknown";
-  }
+final subscription = controller.events.listen((event) {
+
+});
 
 ```
-## AdPlayerTag
+---
 
-### Returns new controller for in-read ads.
+### 6. To subscribe to state stream:
 
 ```dart
 
-Future<AdPlayerInReadController> newInReadController() async {
-    final controllerId = await _channel.invokeMethod("newInReadController", {"id": id});
-    return AdPlayerInReadController(controllerId as String);
-  }
+final subscription = controller.state.listen((state) {
+
+});
+
+
 ```
+---
 
-## AdPlayerController
-
-### State changes stream
+### 7. To add `Interstitial ads` features (Interstitial content is presented over current widget):
 
 ```dart
+    
+final config = AdPlayerInterstitialConfig(
+    dismissOnBack: true,
+    showCloseButtonAfterAdDuration: true,
+    noAdTimeout: Duration(seconds: 5),
+    stalledVideoTimeout: Duration(seconds: 10),
+    onDismissListener: (e) => e.dispose(),
+);
 
-late final state = _stateChannel.receiveBroadcastStream({'id': id}).map(AdPlayerState.fromNative);
-
-```
-
-### Events stream
-
-```dart
-
-late final state = _stateChannel.receiveBroadcastStream({'id': id}).map(AdPlayerState.fromNative);
-
-```
-
-## Release all resources used by this controller.
-
-```dart
-
-void dispose() {
-    _methodChannel.invokeMethod("dispose", {"id": id});
-  }
+final controller = await tag.newInterstitialController(config: config);
+controller.launchInterstitial();
 
 ```
-## Current player state.
-
-```dart
-
-Future<AdPlayerState> getCurrentState() async {
-    final result = await _methodChannel.invokeMethod("getCurrentState", {"id": id});
-    return AdPlayerState.fromNative(result);
-  }
-
-```
-
-## Pauses the player if it's playing.
-
-```dart
-
-void pause() {
-    _methodChannel.invokeMethod("pause", {"id": id});
-  }
-
-```
-
-## Resumes the player if it's paused.
-
-```dart
-
-void resume() {
-    _methodChannel.invokeMethod("resume", {"id": id});
-  }
-
-```
-
-## Skips the currently playing ad if there is one.
-
-```dart
-
-void skipAd() {
-    _methodChannel.invokeMethod("skipAd", {"id": id});
-  }
-
-```
-
-##  Moves the player to or from the fullscreen display mode.
-
-```dart
-
-void toggleFullscreen() {
-    _methodChannel.invokeMethod("toggleFullscreen", {"id": id});
-  }
-
-```
-
-
-
-The widget renders the native SDK view and fills 100% of the space provided by its parent. It does not impose any size of its own.
-
 ---
