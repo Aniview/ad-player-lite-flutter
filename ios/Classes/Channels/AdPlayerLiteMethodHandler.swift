@@ -40,7 +40,7 @@ final class AdPlayerLiteMethodHandler {
               let storeURL = URL(string: storeURLString)
         else {
             result(FlutterError.missingArguments())
-            return
+            fatalError("Missing required parameter 'iosStoreUrl'. Please provide a valid App Store URL.")
         }
         AdPlayer.initSDK(storeUrl: storeURL)
         result(nil)
