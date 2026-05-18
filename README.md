@@ -2,9 +2,8 @@
 
 Flutter plugin for the [Aniview AdPlayer Lite](https://github.com/aniview) SDK. Renders in-read video ad placements on **Android** and **iOS**.
 
----
 
-## Requirements
+### Requirements
 
 | Platform | Minimum version |
 |----------|----------------|
@@ -13,110 +12,74 @@ Flutter plugin for the [Aniview AdPlayer Lite](https://github.com/aniview) SDK. 
 | Flutter  | 3.3.0 |
 | Dart     | 3.3.0 |
 
----
 
-## Installation
+# Usage
 
-Add 'AdPlayerLite' to your `pubspec.yaml`:
+Here are steps to use this library on a fresh project:
 
-```yaml
-dependencies:
-  ad_player_lite:
-    git:
-      url: https://github.com/aniview/ad-player-lite-flutter.git
-```
+1. Add 'AdPlayerLite' to your `pubspec.yaml`:
+    ```yaml
+    dependencies:
+      ad_player_lite:
+        git:
+          url: https://github.com/aniview/ad-player-lite-flutter.git
+    ```
 
-## Usage
+2. Initialize `AdPlayerLite` SDK:
+    ```dart
+    final player = AdPlayer.initialize(
+      iosStoreUrl: "STORE_URL_TO_YOUR_APP",
+    );
+    ```
+   \* on iOS, pass your App Store URL — it is used by the SDK for attribution.
 
-### 1. Initialize `AdPlayerLite` SDK:
+3. Create a tag:
+    ```dart
+    final tag = await player.getTag(pubId: pubId, tagId: tagId);
+    ```
+    \* `pubId` and `tagId` are obtained from the contact person.
 
-```dart
+4. Create a new controller from the tag:
+    ```dart
+    final controller = await tag.newInReadController(); 
+    ```
 
-final adPlayer = AdPlayer.initialize(iosStoreUrl: "STORE_URL_TO_YOUR_APP");
-
-```
-* on iOS, pass your App Store URL — it is used by the SDK for attribution.
-
---- 
-
-### 2. Create tag:
-
-```dart
-
-final tag = await adPlayer.getTag(pubId: pubId, tagId: tagId);
-     
-```
-
-`pubId` and `tagId` are obtained from the contact person.
-
---- 
-
-### 3. To use `InRead ads` features create `InRead` controller from tag: 
+5. Add a widget to the tree:
+    ```dart
+    Widget build(Context context) {
+      return Column(
+        children: [
+          AdPlayerView(controller: controller),
+        ],
+      );
+    }
+    ```
 
 
-```dart
+# Observing Events and States
 
-final controller = await tag.newInReadController();
-     
-```
----
-
-### 4. To add AdPlayer view to the widget:
+AdPlayerLite library provides different events and states to track ads:
 
 ```dart
-
-return Column(
-  children: [
-    AdPlayerView(controller: controller),
-  ],
-);
-
-```
-
-```dart
-
-return AdPlayerView(controller: controller);
-
-```
----
-
-### 5. To subscribe to events stream: 
-
-```dart
-
-final subscription = controller.events.listen((event) {
-
+final stateSubscription = controller.state.listen((state) {
+   print("{state} has changed");
 });
 
-```
----
-
-### 6. To subscribe to state stream:
-
-```dart
-
-final subscription = controller.state.listen((state) {
-
+final eventsSubscription = controller.events.listen((event) {
+  print("{event} was triggered");
 });
-
-
 ```
----
 
-### 7. To add `Interstitial ads` features (Interstitial content is presented over current widget):
+
+# Displaying Interstitial Ads
+
+To show interstitial ads use following api:
 
 ```dart
-    
-final config = AdPlayerInterstitialConfig(
-    dismissOnBack: true,
-    showCloseButtonAfterAdDuration: true,
-    noAdTimeout: Duration(seconds: 5),
-    stalledVideoTimeout: Duration(seconds: 10),
+final controller = await tag.newInterstitialController(
+  config: AdPlayerInterstitialConfig(
     onDismissListener: (e) => e.dispose(),
+  ),
 );
-
-final controller = await tag.newInterstitialController(config: config);
 controller.launchInterstitial();
-
 ```
----
