@@ -257,7 +257,8 @@ final class ContentVolumeChange extends AdPlayerEvent {
 ///
 /// Called when the content is completed.
 ///
-final class ContentVideoTimeChanged extends AdPlayerEvent with MarkerNotLogFriendly {
+final class ContentVideoTimeChanged extends AdPlayerEvent
+    with MarkerNotLogFriendly {
   final Duration position;
   final Duration duration;
 

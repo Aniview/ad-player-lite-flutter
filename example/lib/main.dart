@@ -2,7 +2,9 @@ import 'package:ad_player_lite/ad_player.dart';
 import 'package:ad_player_lite_example/main_screen.dart';
 import 'package:flutter/material.dart';
 
-final adPlayer = AdPlayer.initialize(iosStoreUrl: "https://apps.apple.com/us/app/demo-app/id1234567");
+final adPlayer = AdPlayer.initialize(
+  iosStoreUrl: "https://apps.apple.com/us/app/demo-app/id1234567",
+);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "AdPlayerLite Demo",
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue), useMaterial3: true),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
+      ),
       home: const MainScreen(),
     );
   }

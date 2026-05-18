@@ -1,20 +1,20 @@
 import 'package:ad_player_lite/ad_player_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 ///
 /// Tag object that is used to crate different controllers.
 ///
 class AdPlayerTag {
-  static const _channel = MethodChannel("com.adservrs.adplayer.lite/AdPlayerTag");
+  static const _channel =
+      MethodChannel("com.adservrs.adplayer.lite/AdPlayerTag");
 
   final String id;
 
-  @internal
   AdPlayerTag(this.id);
 
   Future<AdPlayerInReadController> newInReadController() async {
-    final controllerId = await _channel.invokeMethod("newInReadController", {"id": id});
+    final controllerId =
+        await _channel.invokeMethod("newInReadController", {"id": id});
 
     return AdPlayerInReadController(controllerId as String);
   }
@@ -22,7 +22,8 @@ class AdPlayerTag {
   Future<AdPlayerInterstitialController> newInterstitialController({
     AdPlayerInterstitialConfig config = const AdPlayerInterstitialConfig(),
   }) async {
-    final controllerId = await _channel.invokeMethod("newInterstitialController", {
+    final controllerId =
+        await _channel.invokeMethod("newInterstitialController", {
       "id": id,
       "config": config.toNative(),
     });
@@ -65,7 +66,6 @@ class AdPlayerInterstitialConfig {
     this.onDismissListener,
   });
 
-  @internal
   Map<String, dynamic> toNative() {
     return {
       "dismissOnBack": dismissOnBack,

@@ -32,8 +32,10 @@ class AdPlayer {
   /// Returns tag for specific configuration.
   /// Tags are cached and calling with method with the same arguments will always return the same object.
   ///
-  Future<AdPlayerTag> getTag({required String pubId, required String tagId}) async {
-    final id = await _channel.invokeMethod("getTag", {"pubId": pubId, "tagId": tagId});
+  Future<AdPlayerTag> getTag(
+      {required String pubId, required String tagId}) async {
+    final id =
+        await _channel.invokeMethod("getTag", {"pubId": pubId, "tagId": tagId});
     return AdPlayerTag(id as String);
   }
 }

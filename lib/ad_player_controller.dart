@@ -6,9 +6,12 @@ import 'package:ad_player_lite/ad_player_tag.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-const _methodChannel = MethodChannel("com.adservrs.adplayer.lite/AdPlayerController");
-const _stateChannel = EventChannel("com.adservrs.adplayer.lite/AdPlayerController/State");
-const _eventsChannel = EventChannel("com.adservrs.adplayer.lite/AdPlayerController/Events");
+const _methodChannel =
+    MethodChannel("com.adservrs.adplayer.lite/AdPlayerController");
+const _stateChannel =
+    EventChannel("com.adservrs.adplayer.lite/AdPlayerController/State");
+const _eventsChannel =
+    EventChannel("com.adservrs.adplayer.lite/AdPlayerController/Events");
 
 sealed class AdPlayerController {
   static final _methodHandlers = <String, void Function(MethodCall)?>{};
@@ -21,12 +24,14 @@ sealed class AdPlayerController {
   ///
   /// State changes stream
   ///
-  late final state = _stateChannel.receiveBroadcastStream({'id': id}).map(AdPlayerState.fromNative);
+  late final state = _stateChannel
+      .receiveBroadcastStream({'id': id}).map(AdPlayerState.fromNative);
 
   ///
   /// Events stream
   ///
-  late final events = _eventsChannel.receiveBroadcastStream({'id': id}).map(AdPlayerEvent.fromNative);
+  late final events = _eventsChannel
+      .receiveBroadcastStream({'id': id}).map(AdPlayerEvent.fromNative);
 
   @internal
   AdPlayerController(this.id) {
@@ -49,7 +54,8 @@ sealed class AdPlayerController {
   /// Current player state.
   ///
   Future<AdPlayerState> getCurrentState() async {
-    final result = await _methodChannel.invokeMethod("getCurrentState", {"id": id});
+    final result =
+        await _methodChannel.invokeMethod("getCurrentState", {"id": id});
     return AdPlayerState.fromNative(result);
   }
 
@@ -74,8 +80,7 @@ sealed class AdPlayerController {
     _methodChannel.invokeMethod("skipAd", {"id": id});
   }
 
-  void _handleMethodCall(MethodCall call) {
-  }
+  void _handleMethodCall(MethodCall call) {}
 }
 
 class AdPlayerInReadController extends AdPlayerController {

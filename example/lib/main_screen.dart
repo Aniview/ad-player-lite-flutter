@@ -20,7 +20,9 @@ class MainScreen extends HookWidget {
 
   ////////////////////////////////////////////////////////////////////////////////
   Widget buildContent(BuildContext context) {
-    final tagFuture = useMemoized(() => adPlayer.getTag(pubId: Tag.ford.pubId, tagId: Tag.ford.tagId));
+    final tagFuture = useMemoized(
+      () => adPlayer.getTag(pubId: Tag.ford.pubId, tagId: Tag.ford.tagId),
+    );
     final tag = useFuture(tagFuture).data;
 
     if (tag == null) {
@@ -46,7 +48,10 @@ class MainScreen extends HookWidget {
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  Widget _buildControls(BuildContext context, AdPlayerInReadController controller) {
+  Widget _buildControls(
+    BuildContext context,
+    AdPlayerInReadController controller,
+  ) {
     final state = useStream(controller.state);
 
     return Container(
@@ -54,30 +59,49 @@ class MainScreen extends HookWidget {
       color: Color(0x80808080),
       child: Row(
         children: [
-          IconButton.outlined(onPressed: controller.resume, icon: Icon(Icons.play_arrow)),
-          IconButton.outlined(onPressed: controller.pause, icon: Icon(Icons.pause)),
+          IconButton.outlined(
+            onPressed: controller.resume,
+            icon: Icon(Icons.play_arrow),
+          ),
+          IconButton.outlined(
+            onPressed: controller.pause,
+            icon: Icon(Icons.pause),
+          ),
           const SizedBox(width: 16),
           Text("${state.data?.name}", style: TextStyle(fontSize: 24)),
           const Spacer(),
-          IconButton.outlined(onPressed: controller.toggleFullscreen, icon: Icon(Icons.fullscreen)),
+          IconButton.outlined(
+            onPressed: controller.toggleFullscreen,
+            icon: Icon(Icons.fullscreen),
+          ),
         ],
       ),
     );
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  Widget _buildTabsPanel(BuildContext context, AdPlayerTag tag, AdPlayerInReadController controller) {
+  Widget _buildTabsPanel(
+    BuildContext context,
+    AdPlayerTag tag,
+    AdPlayerInReadController controller,
+  ) {
     return DefaultTabController(
       length: MainScreenTab.values.length,
       child: Column(
         children: [
-          TabBar(tabs: MainScreenTab.values.map((e) => Tab(text: e.name)).toList()),
+          TabBar(
+            tabs: MainScreenTab.values.map((e) => Tab(text: e.name)).toList(),
+          ),
           Expanded(
             child: TabBarView(
               children: MainScreenTab.values.map((e) {
                 return switch (e) {
                   MainScreenTab.logs => _buildLogsPanel(context, controller),
-                  MainScreenTab.actions => _buildActionsPanel(context, tag, controller),
+                  MainScreenTab.actions => _buildActionsPanel(
+                    context,
+                    tag,
+                    controller,
+                  ),
                 };
               }).toList(),
             ),
@@ -88,7 +112,10 @@ class MainScreen extends HookWidget {
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  Widget _buildLogsPanel(BuildContext context, AdPlayerInReadController controller) {
+  Widget _buildLogsPanel(
+    BuildContext context,
+    AdPlayerInReadController controller,
+  ) {
     final events = useState(<AdPlayerEvent>[]);
 
     useEffect(() {
@@ -105,13 +132,20 @@ class MainScreen extends HookWidget {
       itemCount: events.value.length,
       itemBuilder: (context, index) {
         final event = events.value[index];
-        return Padding(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8), child: Text("$event"));
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Text("$event"),
+        );
       },
     );
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  Widget _buildActionsPanel(BuildContext context, AdPlayerTag tag, AdPlayerInReadController controller) {
+  Widget _buildActionsPanel(
+    BuildContext context,
+    AdPlayerTag tag,
+    AdPlayerInReadController controller,
+  ) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Column(
@@ -125,7 +159,9 @@ class MainScreen extends HookWidget {
                 stalledVideoTimeout: Duration(seconds: 10),
                 onDismissListener: (e) => e.dispose(),
               );
-              final controller = await tag.newInterstitialController(config: config);
+              final controller = await tag.newInterstitialController(
+                config: config,
+              );
               controller.launchInterstitial();
             },
             child: const Text("Show interstitial ads"),
