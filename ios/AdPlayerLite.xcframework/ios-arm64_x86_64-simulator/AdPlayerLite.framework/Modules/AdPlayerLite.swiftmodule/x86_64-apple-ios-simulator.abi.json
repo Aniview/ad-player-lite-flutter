@@ -2904,6 +2904,13 @@
         "moduleName": "AdPlayerLite"
       },
       {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "AdPlayerLite"
+      },
+      {
         "kind": "TypeDecl",
         "name": "AdPlayerInReadController",
         "printedName": "AdPlayerInReadController",
@@ -4535,6 +4542,105 @@
             "sugared_genericSig": "<Self where Self : AdPlayerLite.AdPlayerController>",
             "protocolReq": true,
             "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "registerFriendlyObstruction",
+            "printedName": "registerFriendlyObstruction(_:purpose:detailedReason:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIView",
+                "printedName": "UIKit.UIView",
+                "usr": "c:objc(cs)UIView"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FriendlyObstructionPurpose",
+                "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12AdPlayerLite0aB10ControllerP27registerFriendlyObstruction_7purpose14detailedReasonySo6UIViewC_AA0fG7PurposeOSStF",
+            "mangledName": "$s12AdPlayerLite0aB10ControllerP27registerFriendlyObstruction_7purpose14detailedReasonySo6UIViewC_AA0fG7PurposeOSStF",
+            "moduleName": "AdPlayerLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : AdPlayerLite.AdPlayerController>",
+            "sugared_genericSig": "<Self where Self : AdPlayerLite.AdPlayerController>",
+            "protocolReq": true,
+            "declAttributes": [
+              "Custom",
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unregisterFriendlyObstruction",
+            "printedName": "unregisterFriendlyObstruction(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIView",
+                "printedName": "UIKit.UIView",
+                "usr": "c:objc(cs)UIView"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12AdPlayerLite0aB10ControllerP29unregisterFriendlyObstructionyySo6UIViewCF",
+            "mangledName": "$s12AdPlayerLite0aB10ControllerP29unregisterFriendlyObstructionyySo6UIViewCF",
+            "moduleName": "AdPlayerLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : AdPlayerLite.AdPlayerController>",
+            "sugared_genericSig": "<Self where Self : AdPlayerLite.AdPlayerController>",
+            "protocolReq": true,
+            "declAttributes": [
+              "Custom",
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unregisterAllFriendlyObstructions",
+            "printedName": "unregisterAllFriendlyObstructions()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12AdPlayerLite0aB10ControllerP33unregisterAllFriendlyObstructionsyyF",
+            "mangledName": "$s12AdPlayerLite0aB10ControllerP33unregisterAllFriendlyObstructionsyyF",
+            "moduleName": "AdPlayerLite",
+            "genericSig": "<τ_0_0 where τ_0_0 : AdPlayerLite.AdPlayerController>",
+            "sugared_genericSig": "<Self where Self : AdPlayerLite.AdPlayerController>",
+            "protocolReq": true,
+            "declAttributes": [
+              "Custom",
               "RawDocComment"
             ],
             "reqNewWitnessTableEntry": true,
@@ -6449,6 +6555,312 @@
             "moduleName": "AdPlayerLite",
             "implicit": true,
             "accessorKind": "get"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "AdPlayerLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "GoogleInteractiveMediaAds",
+        "printedName": "GoogleInteractiveMediaAds",
+        "declKind": "Import",
+        "moduleName": "AdPlayerLite"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FriendlyObstructionPurpose",
+        "printedName": "FriendlyObstructionPurpose",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "mediaControls",
+            "printedName": "mediaControls",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdPlayerLite.FriendlyObstructionPurpose.Type) -> AdPlayerLite.FriendlyObstructionPurpose",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FriendlyObstructionPurpose",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                    "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FriendlyObstructionPurpose",
+                        "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                        "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO13mediaControlsyA2CmF",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO13mediaControlsyA2CmF",
+            "moduleName": "AdPlayerLite"
+          },
+          {
+            "kind": "Var",
+            "name": "closeAd",
+            "printedName": "closeAd",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdPlayerLite.FriendlyObstructionPurpose.Type) -> AdPlayerLite.FriendlyObstructionPurpose",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FriendlyObstructionPurpose",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                    "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FriendlyObstructionPurpose",
+                        "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                        "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO05closeA0yA2CmF",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO05closeA0yA2CmF",
+            "moduleName": "AdPlayerLite"
+          },
+          {
+            "kind": "Var",
+            "name": "notVisible",
+            "printedName": "notVisible",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdPlayerLite.FriendlyObstructionPurpose.Type) -> AdPlayerLite.FriendlyObstructionPurpose",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FriendlyObstructionPurpose",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                    "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FriendlyObstructionPurpose",
+                        "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                        "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO10notVisibleyA2CmF",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO10notVisibleyA2CmF",
+            "moduleName": "AdPlayerLite"
+          },
+          {
+            "kind": "Var",
+            "name": "other",
+            "printedName": "other",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AdPlayerLite.FriendlyObstructionPurpose.Type) -> AdPlayerLite.FriendlyObstructionPurpose",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FriendlyObstructionPurpose",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                    "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AdPlayerLite.FriendlyObstructionPurpose.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FriendlyObstructionPurpose",
+                        "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                        "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO5otheryA2CmF",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO5otheryA2CmF",
+            "moduleName": "AdPlayerLite"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FriendlyObstructionPurpose",
+                "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FriendlyObstructionPurpose",
+                "printedName": "AdPlayerLite.FriendlyObstructionPurpose",
+                "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO2eeoiySbAC_ACtFZ",
+            "moduleName": "AdPlayerLite",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO9hashValueSivp",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO9hashValueSivp",
+            "moduleName": "AdPlayerLite",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO9hashValueSivg",
+                "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO9hashValueSivg",
+                "moduleName": "AdPlayerLite",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO4hash4intoys6HasherVz_tF",
+            "moduleName": "AdPlayerLite",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12AdPlayerLite26FriendlyObstructionPurposeO",
+        "mangledName": "$s12AdPlayerLite26FriendlyObstructionPurposeO",
+        "moduleName": "AdPlayerLite",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           }
         ]
       },
@@ -8491,6 +8903,23 @@
       },
       {
         "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "AdPlayerLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CoreLocation",
+        "printedName": "CoreLocation",
+        "declKind": "Import",
+        "moduleName": "AdPlayerLite"
+      },
+      {
+        "kind": "Import",
         "name": "AppTrackingTransparency",
         "printedName": "AppTrackingTransparency",
         "declKind": "Import",
@@ -8552,10 +8981,13 @@
       },
       {
         "kind": "Import",
-        "name": "CoreLocation",
-        "printedName": "CoreLocation",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
-        "moduleName": "AdPlayerLite"
+        "moduleName": "AdPlayerLite",
+        "declAttributes": [
+          "RawDocComment"
+        ]
       },
       {
         "kind": "Import",
@@ -9374,15 +9806,29 @@
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Generated\/Versions.swift",
       "kind": "StringLiteral",
       "offset": 143,
-      "length": 7,
-      "value": "\"1.8.9\""
+      "length": 8,
+      "value": "\"1.10.0\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Generated\/Versions.swift",
       "kind": "IntegerLiteral",
-      "offset": 172,
+      "offset": 173,
       "length": 2,
-      "value": "20"
+      "value": "22"
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/FriendlyObstractions\/FriendlyObstractionsManager.swift",
+      "kind": "Array",
+      "offset": 601,
+      "length": 2,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/FriendlyObstractions\/FriendlyObstractionsManager.swift",
+      "kind": "Dictionary",
+      "offset": 693,
+      "length": 3,
+      "value": "[]"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/IMAPlayerVC.swift",
@@ -9408,35 +9854,35 @@
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/IMAPlayerVC.swift",
       "kind": "IntegerLiteral",
-      "offset": 992,
+      "offset": 1417,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/IMAPlayerVC.swift",
       "kind": "BooleanLiteral",
-      "offset": 1191,
+      "offset": 1616,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/IMAPlayerVC.swift",
       "kind": "BooleanLiteral",
-      "offset": 3230,
+      "offset": 4536,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/IMAPlayerVC.swift",
       "kind": "IntegerLiteral",
-      "offset": 3364,
+      "offset": 4670,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/IMA\/IMAPlayerVC.swift",
       "kind": "IntegerLiteral",
-      "offset": 3505,
+      "offset": 4811,
       "length": 1,
       "value": "0"
     },
@@ -9849,107 +10295,219 @@
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 791,
+      "offset": 790,
+      "length": 8,
+      "value": "\"AV_URL\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 819,
       "length": 9,
       "value": "\"AV_ATTS\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 866,
+      "offset": 894,
       "length": 12,
       "value": "\"AV_CONSENT\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 909,
+      "offset": 937,
       "length": 19,
       "value": "\"AV_CONNECTIONTYPE\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 949,
+      "offset": 977,
       "length": 9,
       "value": "\"AV_GDPR\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 978,
+      "offset": 1006,
       "length": 8,
       "value": "\"AV_GPP\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1009,
+      "offset": 1037,
       "length": 12,
       "value": "\"AV_GPP_SID\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1042,
+      "offset": 1070,
       "length": 9,
       "value": "\"AV_IDFA\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1100,
+      "offset": 1128,
       "length": 9,
       "value": "\"AV_IDFV\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1170,
+      "offset": 1198,
       "length": 5,
       "value": "\"d39\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1208,
+      "offset": 1236,
       "length": 9,
       "value": "\"AV_UUID\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1251,
+      "offset": 1279,
       "length": 5,
       "value": "\"d41\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1288,
+      "offset": 1316,
       "length": 5,
       "value": "\"d43\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1327,
+      "offset": 1355,
       "length": 5,
       "value": "\"d44\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1365,
+      "offset": 1393,
       "length": 5,
       "value": "\"d47\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
       "kind": "StringLiteral",
-      "offset": 1399,
+      "offset": 1427,
       "length": 5,
       "value": "\"d50\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1456,
+      "length": 12,
+      "value": "\"AV_APPVERS\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1495,
+      "length": 20,
+      "value": "\"AV_RTB_DEVICE_TYPE\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1537,
+      "length": 10,
+      "value": "\"AV_COPPA\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1613,
+      "length": 9,
+      "value": "\"AV_CCPA\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1653,
+      "length": 19,
+      "value": "\"AV_DISPLAYMANAGER\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1706,
+      "length": 22,
+      "value": "\"AV_DISPLAYMANAGERVER\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1752,
+      "length": 13,
+      "value": "\"AV_IFA_TYPE\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1789,
+      "length": 12,
+      "value": "\"AV_CARRIER\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1829,
+      "length": 17,
+      "value": "\"AV_DEVICE_WIDTH\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1875,
+      "length": 18,
+      "value": "\"AV_DEVICE_HEIGHT\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1913,
+      "length": 15,
+      "value": "\"AV_DEVICE_PPI\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1951,
+      "length": 18,
+      "value": "\"AV_DEVICE_PRATIO\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 1996,
+      "length": 16,
+      "value": "\"AV_DEVICE_NAME\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 2037,
+      "length": 13,
+      "value": "\"AV_LATITUDE\""
+    },
+    {
+      "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/MacroProvider.swift",
+      "kind": "StringLiteral",
+      "offset": 2076,
+      "length": 14,
+      "value": "\"AV_LONGITUDE\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/Services\/TagsProvider.swift",
@@ -10311,98 +10869,98 @@
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 469,
+      "offset": 490,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "StringLiteral",
-      "offset": 496,
+      "offset": 517,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "StringLiteral",
-      "offset": 519,
+      "offset": 540,
       "length": 4,
       "value": "\"''\""
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 544,
+      "offset": 565,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 580,
+      "offset": 601,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 607,
+      "offset": 628,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 641,
+      "offset": 662,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 668,
+      "offset": 689,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 696,
+      "offset": 717,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 727,
+      "offset": 748,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 750,
+      "offset": 771,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 776,
+      "offset": 797,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "IntegerLiteral",
-      "offset": 798,
+      "offset": 819,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/zhanna.moskaliuk\/Developer\/Aniview\/ad-player-lite-ios\/ad-player-lite-spm-sources\/Sources\/Classes\/WebView\/BridgeSDKPlayerConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 820,
+      "offset": 841,
       "length": 5,
       "value": "false"
     },
