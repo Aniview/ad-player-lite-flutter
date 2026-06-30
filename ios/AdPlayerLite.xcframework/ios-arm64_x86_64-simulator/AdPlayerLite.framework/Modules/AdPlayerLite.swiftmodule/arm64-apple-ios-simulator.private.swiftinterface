@@ -163,6 +163,9 @@ public protocol AdPlayerController : AnyObject {
   var contentProgressPublisher: Combine.AnyPublisher<AdPlayerLite.ContentProgressEvent, Swift.Never> { get }
   func setContentCurrentTime(_ time: Foundation.TimeInterval)
   func preload(_ size: CoreFoundation.CGSize)
+  @_Concurrency.MainActor func registerFriendlyObstruction(_ view: UIKit.UIView, purpose: AdPlayerLite.FriendlyObstructionPurpose, detailedReason: Swift.String)
+  @_Concurrency.MainActor func unregisterFriendlyObstruction(_ view: UIKit.UIView)
+  @_Concurrency.MainActor func unregisterAllFriendlyObstructions()
 }
 public enum AdConfigError : Swift.Error {
   case invalidJSON
@@ -206,6 +209,17 @@ extension AdPlayerLite.AdPlayerTag {
   #endif
 }
 public let sdkVersionName: Swift.String
+public enum FriendlyObstructionPurpose {
+  case mediaControls
+  case closeAd
+  case notVisible
+  case other
+  public static func == (a: AdPlayerLite.FriendlyObstructionPurpose, b: AdPlayerLite.FriendlyObstructionPurpose) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public struct AdPlayerInterstitialConfiguration {
   public var noAdTimeout: Foundation.TimeInterval
   public var stalledVideoTimeout: Foundation.TimeInterval?
@@ -265,3 +279,5 @@ extension AdPlayerLite.CloseButtonConfig.Position : Swift.Equatable {}
 extension AdPlayerLite.CloseButtonConfig.Position : Swift.Hashable {}
 extension AdPlayerLite.AdConfigError : Swift.Equatable {}
 extension AdPlayerLite.AdConfigError : Swift.Hashable {}
+extension AdPlayerLite.FriendlyObstructionPurpose : Swift.Equatable {}
+extension AdPlayerLite.FriendlyObstructionPurpose : Swift.Hashable {}
