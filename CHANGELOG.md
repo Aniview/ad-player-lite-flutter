@@ -12,3 +12,7 @@
 - added interstitial ads support
 - improved documentation
 
+## 0.3.0
+
+- feature: new reporting macros support
+- fix: sdkconfig ref1 issue
