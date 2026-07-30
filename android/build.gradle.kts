@@ -51,5 +51,5 @@ android {
 }
 
 dependencies {
-    implementation("com.adservrs:ad-player-lite:3.7.13")
+    implementation("com.adservrs:ad-player-lite:4.0.0")
 }

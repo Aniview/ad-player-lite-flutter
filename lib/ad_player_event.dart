@@ -17,6 +17,14 @@ final class AdSourceLoaded extends AdPlayerEvent {
 }
 
 ///
+/// Emitted whenever a bid becomes ready
+///
+final class AdReady extends AdPlayerEvent {
+  @override
+  String toString() => "AdReady";
+}
+
+///
 /// Indicates the first time an ad sources triggered the AdLoaded event.
 ///
 final class AdImpression extends AdPlayerEvent {
@@ -325,6 +333,7 @@ sealed class AdPlayerEvent {
     return switch (map["name"]) {
       "Inventory" => Inventory(),
       "AdSourceLoaded" => AdSourceLoaded(),
+      "AdReady" => AdReady(),
       "AdImpression" => AdImpression(map["data"] as String),
       "AdViewableImpression" => AdViewableImpression(),
       "AdVideoFirstQuartile" => AdVideoFirstQuartile(),

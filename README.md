@@ -1,17 +1,16 @@
 # AdPlayer Lite — Flutter Plugin
 
-Flutter plugin for the [Aniview AdPlayer Lite](https://github.com/aniview) SDK. Renders in-read video ad placements on **Android** and **iOS**.
-
+Flutter plugin for the [Aniview AdPlayer Lite](https://github.com/aniview) SDK. Renders in-read
+video ad placements on **Android** and **iOS**.
 
 ### Requirements
 
-| Platform | Minimum version |
-|----------|----------------|
+| Platform | Minimum version      |
+|----------|----------------------|
 | Android  | API 24 (Android 7.0) |
-| iOS      | 15.0 |
-| Flutter  | 3.3.0 |
-| Dart     | 3.3.0 |
-
+| iOS      | 15.0                 |
+| Flutter  | 3.3.0                |
+| Dart     | 3.3.0                |
 
 # Usage
 
@@ -37,7 +36,7 @@ Here are steps to use this library on a fresh project:
     ```dart
     final tag = await player.getTag(pubId: pubId, tagId: tagId);
     ```
-    \* `pubId` and `tagId` are obtained from the contact person.
+   \* `pubId` and `tagId` are obtained from the contact person.
 
 4. Create a new controller from the tag:
     ```dart
@@ -55,14 +54,32 @@ Here are steps to use this library on a fresh project:
     }
     ```
 
+## Android config
+
+Android build also requires additional configuration.
+
+In your application's build.gradle.kts (`/android/app/build.gradle.kts`) add following:
+
+```kts
+android {
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+    }
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+}
+```
 
 # Observing Events and States
 
 AdPlayerLite library provides different events and states to track ads:
 
 ```dart
+
 final stateSubscription = controller.state.listen((state) {
-   print("{state} has changed");
+  print("{state} has changed");
 });
 
 final eventsSubscription = controller.events.listen((event) {
@@ -70,16 +87,21 @@ final eventsSubscription = controller.events.listen((event) {
 });
 ```
 
-
 # Displaying Interstitial Ads
 
 To show interstitial ads use following api:
 
 ```dart
-final controller = await tag.newInterstitialController(
-  config: AdPlayerInterstitialConfig(
-    onDismissListener: (e) => e.dispose(),
-  ),
+
+final controller = await
+tag.newInterstitialController
+(
+config: AdPlayerInterstitialConfig(
+onDismissListener: (e) => e.dispose(),
+),
 );
-controller.launchInterstitial();
+controller.
+launchInterstitial
+(
+);
 ```

@@ -11,6 +11,10 @@ internal fun AdPlayerEvent.toFlutterValue() = when (this) {
         "name" to "AdSourceLoaded",
     )
 
+    is AdPlayerEvent.AdReady -> mapOf(
+        "name" to "AdReady",
+    )
+
     is AdPlayerEvent.AdImpression -> mapOf(
         "name" to "AdImpression",
         "data" to this.data,
