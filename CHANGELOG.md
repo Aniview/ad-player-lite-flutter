@@ -1,3 +1,17 @@
+## 1.0.0
+
+- feature: floating placement support
+
+## 0.3.0
+
+- feature: new reporting macros support
+- fix: sdkconfig ref1 issue
+
+## 0.2.0
+
+- added interstitial ads support
+- improved documentation
+
 ## 0.1.0
 
 - added in-read ads support
@@ -6,13 +20,3 @@
 - added display ad fullscreen feature
 - added ad state listener
 - added ad events listener
-
-## 0.2.0
-
-- added interstitial ads support
-- improved documentation
-
-## 0.3.0
-
-- feature: new reporting macros support
-- fix: sdkconfig ref1 issue
