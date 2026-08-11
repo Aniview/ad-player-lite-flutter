@@ -32,3 +32,13 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 /build/
 /coverage/
+
+# Generated files with machine-specific paths
+**/Generated.xcconfig
+**/flutter_export_environment.sh
+**/local.properties
+**/Flutter/ephemeral/
+
+# Build artifacts
+**/build/
+**/Pods/
