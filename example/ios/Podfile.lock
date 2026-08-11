@@ -1,34 +1,15 @@
 PODS:
-  - ad_player_lite (0.1.0):
-    - Flutter
-    - GoogleAds-IMA-iOS-SDK
   - Flutter (1.0.0)
-  - GoogleAds-IMA-iOS-SDK (3.27.4)
-  - integration_test (0.0.1):
-    - Flutter
 
 DEPENDENCIES:
-  - ad_player_lite (from `.symlinks/plugins/ad_player_lite/ios`)
   - Flutter (from `Flutter`)
-  - integration_test (from `.symlinks/plugins/integration_test/ios`)
-
-SPEC REPOS:
-  trunk:
-    - GoogleAds-IMA-iOS-SDK
 
 EXTERNAL SOURCES:
-  ad_player_lite:
-    :path: ".symlinks/plugins/ad_player_lite/ios"
   Flutter:
     :path: Flutter
-  integration_test:
-    :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
-  ad_player_lite: 793340456dc78be30bcee0ea31c64149b8681137
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  GoogleAds-IMA-iOS-SDK: 1c696013d47bc3cafa48b7de9c8196941bd3105b
-  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
 
 PODFILE CHECKSUM: 3c97f57f187826236b440e795fd125e365ec36b3
 

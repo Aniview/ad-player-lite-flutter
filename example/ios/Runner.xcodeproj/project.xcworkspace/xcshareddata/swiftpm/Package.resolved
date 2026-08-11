@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "ad-player-lite-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aniview/ad-player-lite-ios-spm.git",
+      "state" : {
+        "revision" : "46ac1ec72ab65689672a94da53515289c979ab2f",
+        "version" : "1.12.0"
+      }
+    },
+    {
+      "identity" : "omsdk-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aniview/omsdk-ios-spm",
+      "state" : {
+        "revision" : "b8954bfbc3f5a22ac2ed154fc4d0b2549d822107",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swift-package-manager-google-interactive-media-ads-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios",
+      "state" : {
+        "revision" : "fdf54991c74edc228b59592a44f33c564abafcc0",
+        "version" : "3.32.0"
+      }
+    }
+  ],
+  "version" : 2
+}

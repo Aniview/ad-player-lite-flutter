@@ -1,6 +1,0 @@
-framework module AdPlayerLite {
-  umbrella header "AdPlayerLite.h"
-  export *
-
-  module * { export * }
-}
