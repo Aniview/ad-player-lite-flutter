@@ -9,22 +9,34 @@ video ad placements on **Android** and **iOS**.
 |----------|----------------------|
 | Android  | API 24 (Android 7.0) |
 | iOS      | 15.0                 |
-| Flutter  | 3.3.0                |
+| Flutter  | 3.24.0               |
 | Dart     | 3.3.0                |
+
+> **Note:** Flutter 3.24.0+ is required for iOS builds (the plugin uses Swift Package Manager).
+
+## Installation
+
+Add the plugin to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  ad_player_lite:
+    git:
+      url: https://github.com/aniview/ad-player-lite-flutter.git
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+On iOS, Flutter will automatically resolve the native SDK via Swift Package Manager.
+On Android, make sure the desugaring library is configured (see [Android config](#android-config) below).
 
 # Usage
 
-Here are steps to use this library on a fresh project:
-
-1. Add 'AdPlayerLite' to your `pubspec.yaml`:
-    ```yaml
-    dependencies:
-      ad_player_lite:
-        git:
-          url: https://github.com/aniview/ad-player-lite-flutter.git
-    ```
-
-2. Initialize `AdPlayerLite` SDK:
+1. Initialize `AdPlayerLite` SDK:
     ```dart
     final player = AdPlayer.initialize(
       iosStoreUrl: "STORE_URL_TO_YOUR_APP",
@@ -93,15 +105,10 @@ To show interstitial ads use following api:
 
 ```dart
 
-final controller = await
-tag.newInterstitialController
-(
-config: AdPlayerInterstitialConfig(
-onDismissListener: (e) => e.dispose(),
-),
+final controller = await tag.newInterstitialController(
+  config: AdPlayerInterstitialConfig(
+    onDismissListener: (e) => e.dispose(),
+  ),
 );
-controller.
-launchInterstitial
-(
-);
+controller.launchInterstitial();
 ```
