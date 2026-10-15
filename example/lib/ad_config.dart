@@ -23,7 +23,7 @@ class AdConfigs {
   );
 
   static const displayGam = AdConfig(
-    label: "Display: GAM",
+    label: "Display",
     type: AdType.display,
     pubId: "565c56d3181f46bd608b459a",
     tagId: "6a9a8c2563d0adbe8f05efd8",
