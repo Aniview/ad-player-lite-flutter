@@ -1,3 +1,6 @@
+## 1.2.0 
+- added support for display ads 
+
 ## 1.1.0
 - added device model macro
 - added device manufacturer macro
