@@ -11,7 +11,8 @@ let package = Package(
     ],
     dependencies: [
         .package(name: "FlutterFramework", path: "../FlutterFramework"),
-        .package(url: "https://github.com/Aniview/ad-player-lite-ios-spm.git", from: "1.11.0"),
+        .package(url: "https://github.com/Aniview/ad-player-lite-ios-spm.git", from: "1.13.2"),
+        .package(url: "https://github.com/Aniview/display-ads-ios-spm.git", from: "1.0.1"),
     ],
     targets: [
         .target(
@@ -19,6 +20,7 @@ let package = Package(
             dependencies: [
                 .product(name: "FlutterFramework", package: "FlutterFramework"),
                 .product(name: "AdPlayerLite", package: "ad-player-lite-ios-spm"),
+                .product(name: "DisplayAdsSDK", package: "display-ads-ios-spm"),
             ],
             resources: [
                 .process("PrivacyInfo.xcprivacy"),

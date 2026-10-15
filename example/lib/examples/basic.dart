@@ -2,8 +2,8 @@ import 'package:ad_player_lite/ad_player_controller.dart';
 import 'package:ad_player_lite/ad_player_event.dart';
 import 'package:ad_player_lite/ad_player_tag.dart';
 import 'package:ad_player_lite/ad_player_view.dart';
+import 'package:ad_player_lite_example/ad_config.dart';
 import 'package:ad_player_lite_example/main.dart';
-import 'package:ad_player_lite_example/tag.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -15,22 +15,62 @@ class BasicExampleScreen extends HookWidget {
   ////////////////////////////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
+    final selectedConfig = useState(AdConfigs.video);
+
     return Scaffold(
       appBar: AppBar(title: Text("Basic example")),
-      body: SafeArea(child: _buildContent(context)),
+      body: SafeArea(
+        child: Column(
+          children: [
+            _buildConfigSelector(context, selectedConfig),
+            Expanded(
+              child: _AdContent(key: ValueKey(selectedConfig.value.label), config: selectedConfig.value),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
   ////////////////////////////////////////////////////////////////////////////////
-  Widget _buildContent(BuildContext context) {
-    final tagFuture = useMemoized(() => adPlayer.getTag(pubId: Tag.ford.pubId, tagId: Tag.ford.tagId));
+  Widget _buildConfigSelector(BuildContext context, ValueNotifier<AdConfig> selectedConfig) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: DropdownButton<AdConfig>(
+        isExpanded: true,
+        value: selectedConfig.value,
+        items: AdConfigs.all.map((config) {
+          return DropdownMenuItem(value: config, child: Text(config.label));
+        }).toList(),
+        onChanged: (config) {
+          if (config != null) {
+            selectedConfig.value = config;
+          }
+        },
+      ),
+    );
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Everything below renders a single ad profile. It's a separate HookWidget,
+// keyed by the selected config in the parent, so each profile switch gets a
+// brand new element and clean hook state instead of reusing stale futures.
+class _AdContent extends HookWidget {
+  final AdConfig config;
+
+  const _AdContent({required super.key, required this.config});
+
+  @override
+  Widget build(BuildContext context) {
+    final tagFuture = useMemoized(() => adPlayer.getTag(pubId: config.pubId, tagId: config.tagId));
     final tag = useFuture(tagFuture).data;
 
     if (tag == null) {
       return Center(child: CircularProgressIndicator());
     }
 
-    final controllerFuture = useMemoized(() => tag.newInReadController());
+    final controllerFuture = useMemoized(() => tag.newInReadController(), [tag]);
     final controller = useFuture(controllerFuture).data;
 
     if (controller == null) {
@@ -41,11 +81,21 @@ class BasicExampleScreen extends HookWidget {
 
     return Column(
       children: [
-        Expanded(child: AdPlayerView(controller: controller)),
+        _buildPlayerFrame(controller),
         _buildControls(context, controller),
         Expanded(child: _buildTabsPanel(context, tag, controller)),
       ],
     );
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////
+  // Video fills the available space (and can go fullscreen); display ads keep
+  // their own fixed frame instead of being stretched to fit.
+  Widget _buildPlayerFrame(AdPlayerInReadController controller) {
+    if (config.type == AdType.display) {
+      return SizedBox(width: 300, height: 250, child: AdPlayerView(controller: controller));
+    }
+    return Expanded(child: AdPlayerView(controller: controller));
   }
 
   ////////////////////////////////////////////////////////////////////////////////

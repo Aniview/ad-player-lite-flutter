@@ -1,5 +1,10 @@
 import Flutter
 import AdPlayerLite
+#if canImport(DisplayAds)
+import DisplayAds
+
+extension DisplayAds.DisplayAdsProvider: @retroactive AdPlayerLite.DisplayAdsProviding {}
+#endif
 
 final class AdPlayerLiteMethodHandler {
     private var registry: ControllerRegistry?
@@ -43,6 +48,9 @@ final class AdPlayerLiteMethodHandler {
             fatalError("Missing required parameter 'iosStoreUrl'. Please provide a valid App Store URL.")
         }
         AdPlayer.initSDK(storeUrl: storeURL)
+        #if canImport(DisplayAds)
+        AdPlayer.setDisplayProvider(DisplayAdsProvider())
+        #endif
         result(nil)
     }
     
