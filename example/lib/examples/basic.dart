@@ -77,6 +77,7 @@ class _AdContent extends HookWidget {
       return Center(child: CircularProgressIndicator());
     }
 
+    // Release the native player when this widget leaves the tree.
     useEffect(() => controller.dispose, [controller]);
 
     return Column(

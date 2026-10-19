@@ -22,6 +22,8 @@ final class AdPlayerControllerMethodHandler {
     // MARK: - Handle method calls through channel
     private func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch call.method {
+        case "dispose":
+            handleDispose(arguments: call.arguments, result: result)
         case "resume":
             handleResume(arguments: call.arguments, result: result)
         case "pause":
@@ -39,6 +41,28 @@ final class AdPlayerControllerMethodHandler {
         default:
             result(FlutterError.notImplemented(name: call.method))
         }
+    }
+    
+    // MARK: - Dispose controller
+    private func handleDispose(arguments: Any?, result: @escaping FlutterResult) {
+        guard let params = arguments as? [String: String],
+              let controllerId = params["id"],
+              let registry = registry
+        else {
+            result(FlutterError.missingArguments())
+            return
+        }
+        // Flutter `dispose()` -> native `destroy()`: tears down the
+        // player (web view, IMA) and drops the strong reference.
+        switch registry.removeController(controllerId) {
+        case .inRead(let controller):
+            controller.destroy()
+        case .interstitial(let controller):
+            controller.destroy()
+        case .none:
+            break
+        }
+        result(nil)
     }
     
     private func handleResume(arguments: Any?, result: @escaping FlutterResult) {

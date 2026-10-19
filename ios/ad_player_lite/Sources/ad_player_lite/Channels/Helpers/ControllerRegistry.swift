@@ -37,7 +37,8 @@ final class ControllerRegistry {
         controllers[id]
     }
 
-    func removeController(_ id: String) {
+    @discardableResult
+    func removeController(_ id: String) -> AdPlayerControllerType? {
         controllers.removeValue(forKey: id)
     }
 }

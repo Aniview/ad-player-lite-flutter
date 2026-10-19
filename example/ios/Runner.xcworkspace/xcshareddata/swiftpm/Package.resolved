@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/ad-player-lite-ios-spm.git",
       "state" : {
-        "revision" : "83f2f6d9992cded10f8e432ed89a0e055693ef8b",
-        "version" : "1.13.2"
+        "revision" : "f1232db712bfe4782445046873aec6b70554d4de",
+        "version" : "1.14.0"
       }
     },
     {
@@ -21,7 +21,7 @@
     {
       "identity" : "omsdk-ios-spm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Aniview/omsdk-ios-spm",
+      "location" : "https://github.com/Aniview/omsdk-ios-spm.git",
       "state" : {
         "revision" : "b8954bfbc3f5a22ac2ed154fc4d0b2549d822107",
         "version" : "1.0.2"

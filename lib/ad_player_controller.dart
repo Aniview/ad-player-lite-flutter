@@ -45,6 +45,10 @@ sealed class AdPlayerController {
   ///
   /// Release all resources used by this controller.
   ///
+  /// Stops playback and releases the native player (Android `release()`,
+  /// iOS `destroy()`). No events or ad tracking are reported afterwards.
+  /// The controller must not be used after this call.
+  ///
   void dispose() {
     _methodHandlers[id] = null;
     _methodChannel.invokeMethod("dispose", {"id": id});
