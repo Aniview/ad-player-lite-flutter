@@ -49,7 +49,7 @@ internal class AdPlayerControllerChannel(
     }
 
     private fun dispose(id: String, result: MethodChannel.Result) {
-        registry.removeController(id)
+        registry.removeController(id).release()
         result.success(null)
     }
 
