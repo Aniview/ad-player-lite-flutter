@@ -1,3 +1,6 @@
+## 1.2.1
+- fix: `AdPlayerController.dispose()` now releases the native player (no playback or ad tracking after dispose)
+
 ## 1.2.0 
 - added support for display ads 
 

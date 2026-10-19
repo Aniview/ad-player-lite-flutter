@@ -66,6 +66,16 @@ On Android, make sure the desugaring library is configured (see [Android config]
     }
     ```
 
+6. Dispose the controller when the screen is closed:
+    ```dart
+    @override
+    void dispose() {
+      controller.dispose();
+      super.dispose();
+    }
+    ```
+   \* see [Releasing the controller](#releasing-the-controller) below.
+
 ## Android config
 
 Android build also requires additional configuration.
@@ -112,3 +122,17 @@ final controller = await tag.newInterstitialController(
 );
 controller.launchInterstitial();
 ```
+
+# Releasing the controller
+
+Every controller created by `newInReadController()` or `newInterstitialController()` holds a native player.
+Call `dispose()` when it is no longer needed — e.g. in `State.dispose()`, or in `onDismissListener` for interstitials.
+
+```dart
+controller.dispose();
+```
+
+`dispose()` stops playback, releases the native player together with its ad tracking, and stops the `state`/`events` streams.
+The controller must not be used after `dispose()`.
+
+Under the hood it calls `release()` on Android and `destroy()` on iOS.

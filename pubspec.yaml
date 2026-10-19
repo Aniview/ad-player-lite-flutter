@@ -1,6 +1,6 @@
 name: ad_player_lite
 description: "Flutter plugin for the Aniview AdPlayer Lite SDK. Supports Android and iOS."
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/aniview/ad-player-lite-flutter
 
 environment:
