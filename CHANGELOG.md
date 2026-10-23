@@ -1,3 +1,6 @@
+## 1.2.2
+- fix: added support for css styling in ios
+
 ## 1.2.1
 - fix: `AdPlayerController.dispose()` now releases the native player (no playback or ad tracking after dispose)
 
