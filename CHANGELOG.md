@@ -1,3 +1,7 @@
+## 1.3.0
+- display ads now use Google Mobile Ads SDK 13.x (display-ads-ios-spm 1.1.0). Compatible with `google_mobile_ads` 8.x.
+- **Note:** iOS apps must use Google Mobile Ads SDK >= 13.0.0 (Xcode 16+). Apps pinned to GMA 11.x/12.x should stay on 1.2.x.
+
 ## 1.2.2
 - fix: added support for css styling in ios
 

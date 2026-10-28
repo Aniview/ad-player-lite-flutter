@@ -12,7 +12,7 @@ let package = Package(
     dependencies: [
         .package(name: "FlutterFramework", path: "../FlutterFramework"),
         .package(url: "https://github.com/Aniview/ad-player-lite-ios-spm.git", from: "1.14.1"),
-        .package(url: "https://github.com/Aniview/display-ads-ios-spm.git", from: "1.0.1"),
+        .package(url: "https://github.com/Aniview/display-ads-ios-spm.git", from: "1.1.0"),
     ],
     targets: [
         .target(
