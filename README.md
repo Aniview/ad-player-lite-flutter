@@ -14,6 +14,28 @@ video ad placements on **Android** and **iOS**.
 
 > **Note:** Flutter 3.24.0+ is required for iOS builds (the plugin uses Swift Package Manager).
 
+#### Enable Swift Package Manager (iOS)
+
+The iOS SDKs (AdPlayerLite, DisplayAds) are distributed via Swift Package Manager only,
+so SPM must be enabled for your app. Either enable it globally:
+
+```bash
+flutter config --enable-swift-package-manager
+```
+
+or per app in your app's `pubspec.yaml`:
+
+```yaml
+flutter:
+  config:
+    enable-swift-package-manager: true
+```
+
+Then run `flutter clean` and rebuild. Your app can keep its `Podfile` for other plugins.
+
+**Troubleshooting:** `error: Unable to find module dependency: 'AdPlayerLite' (in target 'ad_player_lite' from project 'Pods')`
+means the plugin is being built via CocoaPods because SPM is disabled — enable SPM as described above.
+
 ## Installation
 
 Add the plugin to your `pubspec.yaml`:

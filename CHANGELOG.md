@@ -1,3 +1,8 @@
+## 1.3.1
+- package dependencies upgrade for both platforms
+- minimum Flutter version raised to 3.24.0.
+- **Note:** iOS plugin is SPM-only
+
 ## 1.3.0
 - display ads now use Google Mobile Ads SDK 13.x (display-ads-ios-spm 1.1.0). Compatible with `google_mobile_ads` 8.x.
 - **Note:** iOS apps must use Google Mobile Ads SDK >= 13.0.0 (Xcode 16+). Apps pinned to GMA 11.x/12.x should stay on 1.2.x.
