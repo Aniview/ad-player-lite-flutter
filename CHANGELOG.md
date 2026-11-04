@@ -1,3 +1,7 @@
+## 1.3.2
+- iOS: updated `ad-player-lite-ios-spm` to 1.14.2
+- Android: updated `com.adservrs:ad-player-lite` to 4.6.2
+
 ## 1.3.1
 - package dependencies upgrade for both platforms
 - minimum Flutter version raised to 3.24.0.
