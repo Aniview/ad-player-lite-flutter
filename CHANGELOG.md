@@ -1,3 +1,6 @@
+## 1.3.3
+- fix: updated android ad-player-lite dependency to 4.6.2
+
 ## 1.3.2
 - iOS: updated `ad-player-lite-ios-spm` to 1.14.2
 - Android: updated `com.adservrs:ad-player-lite` to 4.6.2
