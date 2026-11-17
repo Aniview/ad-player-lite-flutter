@@ -5,8 +5,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/ad-player-lite-ios-spm.git",
       "state" : {
-        "revision" : "46ac1ec72ab65689672a94da53515289c979ab2f",
-        "version" : "1.12.0"
+        "revision" : "1a6f73c15bade1c915364db879de4478a1c7428b",
+        "version" : "1.14.2"
+      }
+    },
+    {
+      "identity" : "display-ads-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Aniview/display-ads-ios-spm.git",
+      "state" : {
+        "revision" : "6ee304e0fcebe0cadfd7d9b78ebbbbe96f1418df",
+        "version" : "1.2.0"
       }
     },
     {
@@ -25,6 +34,24 @@
       "state" : {
         "revision" : "fdf54991c74edc228b59592a44f33c564abafcc0",
         "version" : "3.32.0"
+      }
+    },
+    {
+      "identity" : "swift-package-manager-google-mobile-ads",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleads/swift-package-manager-google-mobile-ads.git",
+      "state" : {
+        "revision" : "1e305d74a0edcc8d74f7f2cae7a267e36d722ca2",
+        "version" : "13.13.0"
+      }
+    },
+    {
+      "identity" : "swift-package-manager-google-user-messaging-platform",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git",
+      "state" : {
+        "revision" : "13b248eaa73b7826f0efb1bcf455e251d65ecb1b",
+        "version" : "3.1.0"
       }
     }
   ],
