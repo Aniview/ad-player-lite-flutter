@@ -1,5 +1,8 @@
 import 'package:ad_player_lite/ad_player_controller.dart';
+import 'package:ad_player_lite/ad_player_preloader.dart';
 import 'package:flutter/services.dart';
+
+export 'package:ad_player_lite/ad_player_preloader.dart';
 
 ///
 /// Tag object that is used to crate different controllers.
@@ -12,9 +15,17 @@ class AdPlayerTag {
 
   AdPlayerTag(this.id);
 
-  Future<AdPlayerInReadController> newInReadController() async {
-    final controllerId =
-        await _channel.invokeMethod("newInReadController", {"id": id});
+  ///
+  /// Creates a new in-read controller.
+  /// [preLoader] is shown in the placement until the player starts playing.
+  ///
+  Future<AdPlayerInReadController> newInReadController({
+    AdPlayerPreLoader? preLoader,
+  }) async {
+    final controllerId = await _channel.invokeMethod("newInReadController", {
+      "id": id,
+      "preLoader": preLoader?.toNative(),
+    });
 
     return AdPlayerInReadController(controllerId as String);
   }

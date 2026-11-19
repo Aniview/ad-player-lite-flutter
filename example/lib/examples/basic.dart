@@ -16,6 +16,7 @@ class BasicExampleScreen extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final selectedConfig = useState(AdConfigs.video);
+    final usePreLoader = useState(false);
 
     return Scaffold(
       appBar: AppBar(title: Text("Basic example")),
@@ -23,8 +24,18 @@ class BasicExampleScreen extends HookWidget {
         child: Column(
           children: [
             _buildConfigSelector(context, selectedConfig),
+            CheckboxListTile(
+              dense: true,
+              title: const Text("Preloader"),
+              value: usePreLoader.value,
+              onChanged: (value) => usePreLoader.value = value ?? false,
+            ),
             Expanded(
-              child: _AdContent(key: ValueKey(selectedConfig.value.label), config: selectedConfig.value),
+              child: _AdContent(
+                key: ValueKey("${selectedConfig.value.label}-${usePreLoader.value}"),
+                config: selectedConfig.value,
+                usePreLoader: usePreLoader.value,
+              ),
             ),
           ],
         ),
@@ -58,8 +69,15 @@ class BasicExampleScreen extends HookWidget {
 // brand new element and clean hook state instead of reusing stale futures.
 class _AdContent extends HookWidget {
   final AdConfig config;
+  final bool usePreLoader;
 
-  const _AdContent({required super.key, required this.config});
+  const _AdContent({required super.key, required this.config, required this.usePreLoader});
+
+  static const _preLoader = AdPlayerPreLoader.imageUrl(
+    "https://picsum.photos/id/1015/800/450",
+    scaleType: AdPlayerScaleType.cover,
+    clickThroughUrl: "https://aniview.com",
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +88,10 @@ class _AdContent extends HookWidget {
       return Center(child: CircularProgressIndicator());
     }
 
-    final controllerFuture = useMemoized(() => tag.newInReadController(), [tag]);
+    final controllerFuture = useMemoized(
+      () => tag.newInReadController(preLoader: usePreLoader ? _preLoader : null),
+      [tag],
+    );
     final controller = useFuture(controllerFuture).data;
 
     if (controller == null) {

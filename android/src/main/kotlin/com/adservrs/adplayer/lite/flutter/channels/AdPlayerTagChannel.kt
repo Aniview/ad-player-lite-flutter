@@ -1,6 +1,9 @@
 package com.adservrs.adplayer.lite.flutter.channels
 
+import android.net.Uri
 import com.adservrs.adplayer.lite.AdPlayerInterstitialDismissListener
+import com.adservrs.adplayer.lite.AdPlayerPreLoader
+import com.adservrs.adplayer.lite.AdPlayerScaleType
 import com.adservrs.adplayer.lite.flutter.AdPlayerLiteRegistry
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -49,8 +52,12 @@ internal class AdPlayerTagChannel(
             "pubId is missing"
         }
 
+        val preLoader = (arguments["preLoader"] as? Map<*, *>)?.let(::mapPreLoader)
+
         val tag = registry.getTag(id)
-        val controllerId = registry.addController { tag.newInReadController() }
+        val controllerId = registry.addController {
+            tag.newInReadController { config -> config.preLoader = preLoader }
+        }
 
         result.success(controllerId)
     }
@@ -79,5 +86,25 @@ internal class AdPlayerTagChannel(
             }
         }
         result.success(controllerId)
+    }
+
+    private fun mapPreLoader(map: Map<*, *>): AdPlayerPreLoader? {
+        if (map["type"] != "imageUrl") {
+            return null
+        }
+        val imageUrl = map["imageUrl"] as? String ?: return null
+        val scaleType = when (map["scaleType"]) {
+            "fill" -> AdPlayerScaleType.Fill
+            "contain" -> AdPlayerScaleType.Contain
+            else -> AdPlayerScaleType.Cover
+        }
+        val clickListener = (map["clickThroughUrl"] as? String)?.let {
+            AdPlayerPreLoader.clickThroughUrl(Uri.parse(it))
+        }
+        return AdPlayerPreLoader.ImageUrl(
+            imageUrl = imageUrl,
+            scaleType = scaleType,
+            clickListener = clickListener,
+        )
     }
 }

@@ -53,5 +53,5 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.adservrs:ad-player-lite:4.6.2")
+    implementation("com.adservrs:ad-player-lite:4.8.0")
 }

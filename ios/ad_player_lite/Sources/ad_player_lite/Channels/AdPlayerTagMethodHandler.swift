@@ -35,8 +35,8 @@ final class AdPlayerTagMethodHandler {
     
     // MARK: - Create new 'in-read' controller object from registered tag
     private func newInReadController(arguments: Any?, result: @escaping FlutterResult) {
-        guard let params = arguments as? [String: String],
-              let id = params["id"],
+        guard let params = arguments as? [String: Any],
+              let id = params["id"] as? String,
               let registry = registry
         else {
             result(FlutterError.missingArguments())
@@ -46,7 +46,10 @@ final class AdPlayerTagMethodHandler {
             result(FlutterError.missingArguments())
             return
         }
-        let controller = tag.newInReadController()
+        let preLoader = mapPreLoader(params["preLoader"] as? [String: Any])
+        let controller = tag.newInReadController { config in
+            config.preLoader = preLoader
+        }
         let controllerId = registry.addController(.inRead(controller))
         result(controllerId)
     }
@@ -90,5 +93,26 @@ final class AdPlayerTagMethodHandler {
             showCloseButtonAfterAdDuration: showCloseButtonAfterAdDuration
         )
         return congiguration
+    }
+
+    // MARK: - Parse pre-loader received from flutter 'arguments'
+    private func mapPreLoader(_ map: [String: Any]?) -> AdPlayerPreLoader? {
+        guard let map,
+              map["type"] as? String == "imageUrl",
+              let urlString = map["imageUrl"] as? String,
+              let url = URL(string: urlString)
+        else { return nil }
+
+        let scaleType: AdPlayerScaleType
+        switch map["scaleType"] as? String {
+        case "fill": scaleType = .fill
+        case "contain": scaleType = .contain
+        default: scaleType = .cover
+        }
+        let onClick = (map["clickThroughUrl"] as? String)
+            .flatMap { URL(string: $0) }
+            .map { AdPlayerPreLoader.clickThroughUrl($0) }
+
+        return .imageUrl(url, scaleType: scaleType, onClick: onClick)
     }
 }

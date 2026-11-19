@@ -1,3 +1,8 @@
+## 1.4.0
+- feature: added pre-loader for in-read controllers: `tag.newInReadController(preLoader: AdPlayerPreLoader.imageUrl(...))` with `AdPlayerScaleType` (fill / cover / contain) and optional click-through URL
+- iOS: updated `ad-player-lite-ios-spm` to 1.15.0
+- Android: updated `com.adservrs:ad-player-lite` to 4.8.0
+
 ## 1.3.3
 - fix: updated android ad-player-lite dependency to 4.6.2
 

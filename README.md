@@ -98,6 +98,19 @@ On Android, make sure the desugaring library is configured (see [Android config]
     ```
    \* see [Releasing the controller](#releasing-the-controller) below.
 
+## Pre-loader
+
+An in-read controller can show an image in the placement until the player starts playing:
+```dart
+final controller = await tag.newInReadController(
+  preLoader: AdPlayerPreLoader.imageUrl(
+    "https://example.com/preloader.png",
+    scaleType: AdPlayerScaleType.cover, // fill | cover | contain
+    clickThroughUrl: "https://example.com", // optional, null = not clickable
+  ),
+);
+```
+
 ## Android config
 
 Android build also requires additional configuration.
