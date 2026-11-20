@@ -1,12 +1,13 @@
 {
+  "originHash" : "26ea254cbd10e9723b151d34a19046edf6e1ab62776801c4f1571b8e52adcffb",
   "pins" : [
     {
       "identity" : "ad-player-lite-ios-spm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/ad-player-lite-ios-spm.git",
       "state" : {
-        "revision" : "1a6f73c15bade1c915364db879de4478a1c7428b",
-        "version" : "1.14.2"
+        "revision" : "e0f85257f83a3c35872923a692880984920965d1",
+        "version" : "1.15.0"
       }
     },
     {
@@ -14,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/display-ads-ios-spm.git",
       "state" : {
-        "revision" : "eaa1b72a6d43228c2d36963ad612c1cb7546872e",
-        "version" : "1.1.0"
+        "revision" : "48b422f8e6c06d9afeaade025f554bc7edbf136f",
+        "version" : "1.4.0"
       }
     },
     {
@@ -30,10 +31,10 @@
     {
       "identity" : "swift-package-manager-google-interactive-media-ads-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios",
+      "location" : "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git",
       "state" : {
-        "revision" : "fdf54991c74edc228b59592a44f33c564abafcc0",
-        "version" : "3.32.0"
+        "revision" : "b9518343f5aed48ed0751680ce04910afdcf5c8f",
+        "version" : "3.34.1"
       }
     },
     {
@@ -41,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleads/swift-package-manager-google-mobile-ads.git",
       "state" : {
-        "revision" : "d1fa1f5c1dfe3b43d56c73f4de388ad3316618bc",
-        "version" : "13.11.0"
+        "revision" : "1e305d74a0edcc8d74f7f2cae7a267e36d722ca2",
+        "version" : "13.13.0"
       }
     },
     {
@@ -50,10 +51,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git",
       "state" : {
-        "revision" : "708a282840c2171ee63bd93b87afa49fe507d70e",
-        "version" : "2.7.0"
+        "revision" : "13b248eaa73b7826f0efb1bcf455e251d65ecb1b",
+        "version" : "3.1.0"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

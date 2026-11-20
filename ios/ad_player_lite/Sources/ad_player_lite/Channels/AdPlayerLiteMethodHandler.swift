@@ -2,8 +2,6 @@ import Flutter
 import AdPlayerLite
 #if canImport(DisplayAds)
 import DisplayAds
-
-extension DisplayAds.DisplayAdsProvider: @retroactive AdPlayerLite.DisplayAdsProviding {}
 #endif
 
 final class AdPlayerLiteMethodHandler {

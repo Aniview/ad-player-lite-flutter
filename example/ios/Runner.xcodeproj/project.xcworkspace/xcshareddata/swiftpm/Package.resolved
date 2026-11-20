@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/ad-player-lite-ios-spm.git",
       "state" : {
-        "revision" : "1a6f73c15bade1c915364db879de4478a1c7428b",
-        "version" : "1.14.2"
+        "revision" : "e0f85257f83a3c35872923a692880984920965d1",
+        "version" : "1.15.0"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/display-ads-ios-spm.git",
       "state" : {
-        "revision" : "6ee304e0fcebe0cadfd7d9b78ebbbbe96f1418df",
-        "version" : "1.2.0"
+        "revision" : "48b422f8e6c06d9afeaade025f554bc7edbf136f",
+        "version" : "1.4.0"
       }
     },
     {
