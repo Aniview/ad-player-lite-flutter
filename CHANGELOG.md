@@ -3,6 +3,7 @@
 - iOS: updated `ad-player-lite-ios-spm` to 1.15.0
 - iOS: updated `display-ads-ios-spm` to 1.4.0 (required by the new `DisplayAdsProviding` API in AdPlayerLite 1.15.0)
 - Android: updated `com.adservrs:ad-player-lite` to 4.8.0
+- **Note (Android):** apps must now use compileSdk 37, an Android Gradle Plugin that supports API 37 (e.g. 9.2.0+) and Kotlin 2.3+.
 
 ## 1.3.3
 - fix: updated android ad-player-lite dependency to 4.6.2

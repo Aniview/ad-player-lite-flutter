@@ -8,11 +8,14 @@ video ad placements on **Android** and **iOS**.
 | Platform | Minimum version      |
 |----------|----------------------|
 | Android  | API 24 (Android 7.0) |
+| Android compileSdk | 37             |
 | iOS      | 15.0                 |
 | Flutter  | 3.24.0               |
 | Dart     | 3.3.0                |
 
 > **Note:** Flutter 3.24.0+ is required for iOS builds (the plugin uses Swift Package Manager).
+
+> **Note:** On Android, the app must compile against API 37 (`compileSdk = 37`) and use an Android Gradle Plugin that supports it (e.g. 9.2.0+) and Kotlin 2.3+.
 
 #### Enable Swift Package Manager (iOS)
 
