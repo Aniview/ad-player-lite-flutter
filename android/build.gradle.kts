@@ -9,7 +9,7 @@ plugins {
 android {
     namespace = "com.adservrs.adplayer.lite.flutter"
 
-    compileSdk = 36
+    compileSdk = 37
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
