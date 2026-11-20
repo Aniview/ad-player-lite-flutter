@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.adservrs.adplayerlite.flutter_example"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
