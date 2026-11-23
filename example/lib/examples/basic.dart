@@ -81,7 +81,13 @@ class _AdContent extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tagFuture = useMemoized(() => adPlayer.getTag(pubId: config.pubId, tagId: config.tagId));
+    final tagFuture = useMemoized(
+      () => adPlayer.getTag(
+        pubId: config.pubId,
+        tagId: config.tagId,
+        macros: const {"test_macro": "MSDK-1515"},
+      ),
+    );
     final tag = useFuture(tagFuture).data;
 
     if (tag == null) {
