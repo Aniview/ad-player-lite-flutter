@@ -75,6 +75,18 @@ On Android, make sure the desugaring library is configured (see [Android config]
     ```
    \* `pubId` and `tagId` are obtained from the contact person.
 
+   Optionally, pass custom macros (e.g. per-user values or targeting). They are sent with every ad request made by this tag:
+    ```dart
+    final tag = await player.getTag(
+      pubId: pubId,
+      tagId: tagId,
+      macros: {
+        "MACRO_NAME": "value",
+      },
+    );
+    ```
+   \* macro names and values are agreed with the contact person. Tags are cached, so pass the macros on the first `getTag` call for that tag.
+
 4. Create a new controller from the tag:
     ```dart
     final controller = await tag.newInReadController(); 

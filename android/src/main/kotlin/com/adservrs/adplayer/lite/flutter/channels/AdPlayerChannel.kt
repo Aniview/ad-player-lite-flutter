@@ -42,7 +42,16 @@ internal class AdPlayerChannel(
             "tagId is missing"
         }
 
-        val tag = AdPlayer.getTag(context, pubId = pubId, tagId = tagId)
+        val tagMacros = (arguments["macros"] as? Map<*, *>)
+            ?.mapNotNull { (key, value) ->
+                if (key is String && value is String) key to value else null
+            }
+            ?.toMap()
+            .orEmpty()
+
+        val tag = AdPlayer.getTag(context, pubId = pubId, tagId = tagId) {
+            macros = tagMacros
+        }
         val id = registry.addTag(tag)
 
         result.success(id)

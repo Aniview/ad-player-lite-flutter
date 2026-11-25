@@ -54,16 +54,17 @@ final class AdPlayerLiteMethodHandler {
     
     // MARK: - create 'AdPlayerTag' object
     private func handleGetTag(arguments: Any?, result: @escaping FlutterResult) {
-        guard let params = arguments as? [String: String],
-              let pubId = params["pubId"],
-              let tagId = params["tagId"],
+        guard let params = arguments as? [String: Any],
+              let pubId = params["pubId"] as? String,
+              let tagId = params["tagId"] as? String,
               let registry = registry
         else {
             result(FlutterError.missingArguments())
             return
         }
+        let macros = params["macros"] as? [String: String] ?? [:]
         
-        let tag = AdPlayer.getTag(pubId: pubId, tagId: tagId)
+        let tag = AdPlayer.getTag(pubId: pubId, tagId: tagId, macros: macros)
         let id = registry.addTag(tag)
         result(id)
     }

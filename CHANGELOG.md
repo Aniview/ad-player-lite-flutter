@@ -1,3 +1,6 @@
+## 1.5.0
+- feature: `AdPlayer.getTag` takes an optional `macros` map (`Map<String, String>`) that is passed to the native SDKs
+
 ## 1.4.0
 - feature: added pre-loader for in-read controllers: `tag.newInReadController(preLoader: AdPlayerPreLoader.imageUrl(...))` with `AdPlayerScaleType` (fill / cover / contain) and optional click-through URL
 - iOS: updated `ad-player-lite-ios-spm` to 1.15.0
