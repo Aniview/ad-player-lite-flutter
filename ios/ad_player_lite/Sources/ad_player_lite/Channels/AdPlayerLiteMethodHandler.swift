@@ -38,15 +38,14 @@ final class AdPlayerLiteMethodHandler {
     
     // MARK: - Init 'AdPlayerLite' SDK
     private func handleInitializeSDK(arguments: Any?, result: @escaping FlutterResult) {
-        guard let params = arguments as? [String: Any],
-              let storeURLString = params["iosStoreUrl"] as? String,
+        guard let params = arguments as? [String: String],
+              let storeURLString = params["iosStoreUrl"],
               let storeURL = URL(string: storeURLString)
         else {
             result(FlutterError.missingArguments())
             fatalError("Missing required parameter 'iosStoreUrl'. Please provide a valid App Store URL.")
         }
-        let domain = params["domain"] as? String
-        AdPlayer.initSDK(storeUrl: storeURL, domain: domain)
+        AdPlayer.initSDK(storeUrl: storeURL)
         #if canImport(DisplayAds)
         AdPlayer.setDisplayProvider(DisplayAdsProvider())
         #endif
