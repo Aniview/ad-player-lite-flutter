@@ -45,8 +45,7 @@ final class AdPlayerLiteMethodHandler {
             result(FlutterError.missingArguments())
             fatalError("Missing required parameter 'iosStoreUrl'. Please provide a valid App Store URL.")
         }
-        let domain = params["domain"] as? String
-        AdPlayer.initSDK(storeUrl: storeURL, domain: domain)
+        AdPlayer.initSDK(storeUrl: storeURL)
         #if canImport(DisplayAds)
         AdPlayer.setDisplayProvider(DisplayAdsProvider())
         #endif
@@ -64,8 +63,9 @@ final class AdPlayerLiteMethodHandler {
             return
         }
         let macros = params["macros"] as? [String: String] ?? [:]
-        
-        let tag = AdPlayer.getTag(pubId: pubId, tagId: tagId, macros: macros)
+        let domain = params["domain"] as? String
+
+        let tag = AdPlayer.getTag(pubId: pubId, tagId: tagId, macros: macros, domain: domain)
         let id = registry.addTag(tag)
         result(id)
     }

@@ -15,17 +15,10 @@ class AdPlayer {
   ///
   /// [iosStoreUrl] is the App Store URL of the app (required on iOS).
   ///
-  /// [domain] is an optional publisher app domain (e.g. "fluttertest.tv"). When set,
-  /// ad requests on both platforms report it as the app domain instead of
-  /// aniview.com. When `null` or empty, the native SDK default is used.
-  /// Must be called before [getTag]: tags created earlier keep the default domain.
-  ///
-  static AdPlayer initialize({String? iosStoreUrl, String? domain}) {
+  static AdPlayer initialize({String? iosStoreUrl}) {
     if (!_initialized) {
-      final trimmedDomain = domain?.trim();
       _channel.invokeMethod("initialize", {
         "iosStoreUrl": iosStoreUrl,
-        if (trimmedDomain != null && trimmedDomain.isNotEmpty) "domain": trimmedDomain,
       });
       _initialized = true;
     }
@@ -47,15 +40,20 @@ class AdPlayer {
   /// targeting) that are passed to the native SDK and sent with every ad request
   /// made by this tag.
   ///
+  /// [domain] is an optional publisher app domain, used as is. The player is loaded
+  /// with it and it is sent with ad requests made by this tag. Defaults to "aniview.com".
+  ///
   Future<AdPlayerTag> getTag({
     required String pubId,
     required String tagId,
     Map<String, String> macros = const {},
+    String? domain,
   }) async {
     final id = await _channel.invokeMethod("getTag", {
       "pubId": pubId,
       "tagId": tagId,
       "macros": macros,
+      if (domain != null) "domain": domain,
     });
     return AdPlayerTag(id as String);
   }

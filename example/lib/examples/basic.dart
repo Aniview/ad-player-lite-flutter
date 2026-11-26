@@ -86,6 +86,7 @@ class _AdContent extends HookWidget {
         pubId: config.pubId,
         tagId: config.tagId,
         macros: const {"test_macro": "MSDK-1515"},
+        domain: testDomain,
       ),
     );
     final tag = useFuture(tagFuture).data;
