@@ -1,12 +1,13 @@
 {
+  "originHash" : "26ea254cbd10e9723b151d34a19046edf6e1ab62776801c4f1571b8e52adcffb",
   "pins" : [
     {
       "identity" : "ad-player-lite-ios-spm",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Aniview/ad-player-lite-ios-spm.git",
       "state" : {
-        "revision" : "e600f29f2b96a7dd796dd5ae79f86e6edaf8a4d5",
-        "version" : "1.16.0"
+        "revision" : "e0f85257f83a3c35872923a692880984920965d1",
+        "version" : "1.15.0"
       }
     },
     {
@@ -21,7 +22,7 @@
     {
       "identity" : "omsdk-ios-spm",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Aniview/omsdk-ios-spm",
+      "location" : "https://github.com/Aniview/omsdk-ios-spm.git",
       "state" : {
         "revision" : "b8954bfbc3f5a22ac2ed154fc4d0b2549d822107",
         "version" : "1.0.2"
@@ -55,5 +56,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
