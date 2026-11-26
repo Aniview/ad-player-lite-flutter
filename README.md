@@ -69,6 +69,14 @@ On Android, make sure the desugaring library is configured (see [Android config]
     ```
    \* on iOS, pass your App Store URL — it is used by the SDK for attribution.
 
+   Optionally, pass your app's domain. Ad requests on both platforms then report it as the app domain (`app.domain` / `app.publisher.domain`) instead of aniview.com. Call `initialize` before `getTag`:
+    ```dart
+    final player = AdPlayer.initialize(
+      iosStoreUrl: "STORE_URL_TO_YOUR_APP",
+      domain: "example.com",
+    );
+    ```
+
 3. Create a tag:
     ```dart
     final tag = await player.getTag(pubId: pubId, tagId: tagId);

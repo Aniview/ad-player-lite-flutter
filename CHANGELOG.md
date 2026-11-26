@@ -1,5 +1,7 @@
 ## 1.5.0
 - feature: `AdPlayer.getTag` takes an optional `macros` map (`Map<String, String>`) that is passed to the native SDKs
+- feature: `AdPlayer.initialize` takes an optional `domain` (e.g. "domainname.tv") reported as the app domain in ad requests on both platforms; must be set before `getTag`
+- iOS: updated `ad-player-lite-ios-spm` to 1.16.0 (required for `domain`)
 
 ## 1.4.0
 - feature: added pre-loader for in-read controllers: `tag.newInReadController(preLoader: AdPlayerPreLoader.imageUrl(...))` with `AdPlayerScaleType` (fill / cover / contain) and optional click-through URL
