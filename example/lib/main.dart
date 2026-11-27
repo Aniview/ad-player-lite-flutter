@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 final adPlayer = AdPlayer.initialize(
   iosStoreUrl: "https://apps.apple.com/us/app/demo-app/id1234567",
-  domain: "fluttertest.tv",
 );
+
+/// Test publisher domain passed to `getTag` (same as the SDK default).
+const testDomain = "aniview.com";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

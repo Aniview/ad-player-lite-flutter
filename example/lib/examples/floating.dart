@@ -20,7 +20,7 @@ class FloatingExampleScreen extends HookWidget {
 
   ////////////////////////////////////////////////////////////////////////////////
   Widget _buildContent(BuildContext context) {
-    final tagFuture = useMemoized(() => adPlayer.getTag(pubId: Tag.ford.pubId, tagId: Tag.ford.tagId));
+    final tagFuture = useMemoized(() => adPlayer.getTag(pubId: Tag.ford.pubId, tagId: Tag.ford.tagId, domain: testDomain));
     final tag = useFuture(tagFuture).data;
 
     if (tag == null) {

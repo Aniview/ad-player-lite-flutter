@@ -14,8 +14,6 @@ internal class AdPlayerChannel(
     private val context = binding.applicationContext
     private val channel = MethodChannel(binding.binaryMessenger, "com.adservrs.adplayer.lite/AdPlayer")
 
-    private var domain: String? = null
-
     init {
         channel.setMethodCallHandler(this)
     }
@@ -26,17 +24,11 @@ internal class AdPlayerChannel(
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         return when (call.method) {
-            "initialize" -> initialize(call, result)
+            "initialize" -> result.success(null)
             "getVersion" -> result.success(BuildConfig.SDK_VERSION_NAME)
             "getTag" -> getTag(call, result)
             else -> result.notImplemented()
         }
-    }
-
-    private fun initialize(call: MethodCall, result: MethodChannel.Result) {
-        val arguments = call.arguments as? Map<*, *>
-        domain = normalizeDomain(arguments?.get("domain") as? String)
-        result.success(null)
     }
 
     private fun getTag(call: MethodCall, result: MethodChannel.Result) {
@@ -56,23 +48,14 @@ internal class AdPlayerChannel(
             }
             ?.toMap()
             .orEmpty()
+        val tagDomain = arguments["domain"] as? String
 
         val tag = AdPlayer.getTag(context, pubId = pubId, tagId = tagId) {
             macros = tagMacros
-            this@AdPlayerChannel.domain?.let { domainName = it }
+            tagDomain?.let { domainName = it }
         }
         val id = registry.addTag(tag)
 
         result.success(id)
-    }
-
-    private companion object {
-        fun normalizeDomain(value: String?): String? = value
-            ?.trim()
-            ?.lowercase()
-            ?.removePrefix("https://")
-            ?.removePrefix("http://")
-            ?.trimEnd('/')
-            ?.takeIf { it.isNotEmpty() }
     }
 }
